@@ -1,0 +1,2125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomsGov - الرؤية الاستراتيجية للحوكمة الرقمية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1b2951 0%, #1b2951 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fcfcfb;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1b2951 0%, #1b2951 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .header .description {
+            font-size: 1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .nav {
+            background: #f8f9fa;
+            padding: 1rem 0;
+            border-bottom: 2px solid #e9ecef;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .nav li {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .nav li:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            color: #1b2951;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav a:hover, .nav a.active {
+            background: #1b2951;
+            color: white;
+        }
+
+        .content {
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .chapter {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .chapter.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chapter h2 {
+            color: #1b2951;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #ffc661;
+            padding-bottom: 0.5rem;
+        }
+
+        .chapter h3 {
+            color: #1b2951;
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .chapter h4 {
+            color: #495057;
+            font-size: 1.2rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .chapter h5 {
+            color: #6c757d;
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .chapter p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .chapter ul, .chapter ol {
+            margin: 1rem 0;
+            padding-right: 2rem;
+        }
+
+        .chapter li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #ffc661 0%, #fcfcfb 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-right: 4px solid #1b2951;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: #fcfcfb;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1b2951;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 0.5rem;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: #fcfcfb;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .table th {
+            background: #1b2951;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e9ecef;
+            text-align: center;
+        }
+
+        .table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .progress-bar {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 20px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1b2951, #ffc661);
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+
+        .footer {
+            background: #1b2951;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            background: #fcfcfb;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-right: 4px solid #ffc661;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: #1b2951;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .table {
+                font-size: 0.9rem;
+            }
+
+            .table th, .table td {
+                padding: 0.5rem;
+            }
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #1b2951;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            font-size: 1.2rem;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-2px);
+            background: #ffc661;
+            color: #1b2951;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .blockquote {
+            border-right: 4px solid #1b2951;
+            padding: 1rem 2rem;
+            margin: 2rem 0;
+            background: #fcfcfb;
+            font-style: italic;
+        }
+
+        .card-deck {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: #fcfcfb;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #1b2951, #ffc661);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .badge {
+            background: #1b2951;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-warning {
+            background: #ffc661;
+            color: #1b2951;
+        }
+
+        .progress-container {
+            margin: 1rem 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .milestone {
+            background: #fcfcfb;
+            border-right: 4px solid #ffc661;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .milestone-header {
+            font-weight: 700;
+            color: #1b2951;
+            margin-bottom: 0.5rem;
+        }
+
+        .risk-matrix {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .risk-item {
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .risk-low {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .risk-medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .risk-high {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .action-button {
+            background: #1b2951;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .action-button:hover {
+            background: #ffc661;
+            color: #1b2951;
+            transform: translateY(-2px);
+        }
+
+        .action-button.secondary {
+            background: #ffc661;
+            color: #1b2951;
+        }
+
+        .action-button.secondary:hover {
+            background: #1b2951;
+            color: white;
+        }
+
+        .comparison-table {
+            margin: 2rem 0;
+        }
+
+        .comparison-table th {
+            background: #1b2951;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .comparison-table .winner {
+            background: #d4edda;
+            font-weight: bold;
+        }
+
+        .comparison-table .loser {
+            background: #f8d7da;
+        }
+
+        .kpi-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .kpi-card {
+            background: #fcfcfb;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1b2951;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .kpi-trend {
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .trend-up {
+            color: #28a745;
+        }
+
+        .trend-down {
+            color: #dc3545;
+        }
+
+        .chapter-summary {
+            background: linear-gradient(120deg, #ffc661 0%, #fcfcfb 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            border: 1px solid #1b2951;
+        }
+
+        .chapter-summary h4 {
+            color: #1b2951;
+            margin-bottom: 1rem;
+        }
+
+        .next-steps {
+            background: #1b2951;
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .next-steps h4 {
+            color: #ffc661;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            background: #fcfcfb;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+            border: 2px solid #ffc661;
+        }
+
+        .executive-summary {
+            background: linear-gradient(135deg, #1b2951 0%, #ffc661 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .executive-summary h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .feature-card {
+                padding: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .kpi-dashboard {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .risk-matrix {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1>🏛️ HomsGov</h1>
+        <div class="subtitle">الجزء الأول: الرؤية الاستراتيجية</div>
+        <div class="description">
+            دليل شامل للتحول الرقمي في الحوكمة المحلية - نحو مستقبل أفضل لمحافظة حمص
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <ul>
+                <li><a href="#overview" onclick="showChapter('overview')" id="nav-overview">📋 نظرة عامة</a></li>
+                <li><a href="#chapter1" onclick="showChapter('chapter1')" id="nav-chapter1">🌍 التحول الرقمي</a></li>
+                <li><a href="#chapter2" onclick="showChapter('chapter2')" id="nav-chapter2">📊 تحليل الوضع الحالي</a></li>
+                <li><a href="#chapter3" onclick="showChapter('chapter3')" id="nav-chapter3">🎯 رؤية المستقبل</a></li>
+                <li><a href="#chapter4" onclick="showChapter('chapter4')" id="nav-chapter4">💰 الفوائد والعوائد</a></li>
+                <li><a href="#chapter5" onclick="showChapter('chapter5')" id="nav-chapter5">🏛️ الهيكل الإداري</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="content">
+        <!-- نظرة عامة -->
+        <section id="overview" class="chapter active">
+            <h2>📋 نظرة عامة - الجزء الأول</h2>
+
+            <div class="highlight">
+                <h3>🎯 الهدف من هذا الجزء</h3>
+                <p>يؤسس الجزء الأول لحقيقة واضحة: <strong>التحول الرقمي في الإدارة المحلية لم يعد خياراً، بل ضرورة حتمية للبقاء والتقدم</strong>. نقدم هنا رؤية استراتيجية شاملة مدعومة بالبيانات والتحليل المالي.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">78%</span>
+                    <div class="stat-label">من الحكومات المحلية عالمياً تبنت الحوكمة الرقمية</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">18%</span>
+                    <div class="stat-label">معدل رضا المواطنين الحالي في حمص</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">85%</span>
+                    <div class="stat-label">الهدف المستهدف لرضا المواطنين</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">6.25M</span>
+                    <div class="stat-label">دولار صافي العائد المتوقع خلال 5 سنوات</div>
+                </div>
+            </div>
+
+            <h3>📚 محتويات الجزء الأول</h3>
+            <ul>
+                <li><strong>الفصل الأول:</strong> التحول الرقمي كضرورة حتمية - السياق العالمي والمحلي</li>
+                <li><strong>الفصل الثاني:</strong> تحليل الوضع الحالي والتحديات - دراسة ميدانية شاملة</li>
+                <li><strong>الفصل الثالث:</strong> رؤية HomsGov للمستقبل - خطة استراتيجية طموحة</li>
+                <li><strong>الفصل الرابع:</strong> الفوائد المتوقعة والعوائد الاستثمارية - تحليل مالي مفصل</li>
+                <li><strong>الفصل الخامس:</strong> الهيكل الإداري ونظام المراقبة - الملخص التنفيذي للقيادات</li>
+            </ul>
+
+            <div class="highlight">
+                <h4>💡 النتيجة الرئيسية</h4>
+                <p>مشروع HomsGov ليس مجرد تحسين تقني، بل <strong>مشروع تنموي حضاري</strong> يهدف إلى بناء نموذج جديد للحوكمة المحلية في العالم العربي مع عوائد مالية مضمونة وتأثير اجتماعي إيجابي كبير.</p>
+            </div>
+        </section>
+
+        <!-- الفصل الأول -->
+        <section id="chapter1" class="chapter">
+            <h2>🌍 الفصل الأول: التحول الرقمي كضرورة حتمية</h2>
+
+            <h3>🌐 السياق العالمي والإقليمي</h3>
+
+            <div class="highlight">
+                <h4>🎯 لماذا الآن؟</h4>
+                <p>في عصر يشهد تسارعاً متزايداً في التطور التقني، تواجه الحكومات المحلية ضرورة حتمية للتحول الرقمي. منصة HomsGov تأتي كاستجابة استراتيجية لهذا التحدي.</p>
+            </div>
+
+            <h4>📊 الأرقام العالمية المؤثرة</h4>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">89%</span>
+                    <div class="stat-label">من الدول تبنت استراتيجيات التحول الرقمي</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">65%</span>
+                    <div class="stat-label">من المواطنين عالمياً يفضلون الخدمات الرقمية</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">45%</span>
+                    <div class="stat-label">توفير في التكاليف التشغيلية</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">70%</span>
+                    <div class="stat-label">تقليل في زمن إنجاز المعاملات</div>
+                </div>
+            </div>
+
+            <h4>🏆 النماذج الإقليمية الرائدة</h4>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>الدولة</th>
+                    <th>المنصة</th>
+                    <th>عدد المستخدمين</th>
+                    <th>معدل الرضا</th>
+                    <th>التوفير السنوي</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>الإمارات</td>
+                    <td>UAE Pass</td>
+                    <td>9.9 مليون</td>
+                    <td>96%</td>
+                    <td>2.1 مليار درهم</td>
+                </tr>
+                <tr>
+                    <td>السعودية</td>
+                    <td>أبشر</td>
+                    <td>15 مليون</td>
+                    <td>88%</td>
+                    <td>8.2 مليار ريال</td>
+                </tr>
+                <tr>
+                    <td>إستونيا</td>
+                    <td>e-Estonia</td>
+                    <td>1.3 مليون</td>
+                    <td>94%</td>
+                    <td>2% من الناتج المحلي</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h3>🇸🇾 لماذا سوريا الآن؟</h3>
+
+            <h4>الدوافع الاستراتيجية:</h4>
+            <ul>
+                <li><strong>إعادة الإعمار:</strong> فرصة لبناء أنظمة حديثة من الأساس</li>
+                <li><strong>استعادة الثقة:</strong> الحاجة لتحسين العلاقة بين المواطن والحكومة</li>
+                <li><strong>التنافسية الإقليمية:</strong> ضرورة مواكبة التطورات في المنطقة</li>
+                <li><strong>الكفاءة الاقتصادية:</strong> تحسين استخدام الموارد المحدودة المتاحة</li>
+            </ul>
+
+            <h4>النافذة الزمنية الحرجة:</h4>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 68%"></div>
+            </div>
+            <p><strong>68% من السوريين يملكون هواتف ذكية</strong> - الجيل الجديد جاهز للتحول</p>
+
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 52%"></div>
+            </div>
+            <p><strong>52% لديهم وصول منتظم للإنترنت</strong> - البنية التحتية في تحسن</p>
+
+            <div class="highlight">
+                <h4>🎯 الفرصة الذهبية</h4>
+                <p>الجيل الجديد من المواطنين متقبل للتقنية أكثر من أي وقت مضى، والبنية التحتية للاتصالات في تحسن مستمر، والدعم الحكومي للتحديث في أعلى مستوياته.</p>
+            </div>
+        </section>
+
+        <!-- الفصل الثاني -->
+        <section id="chapter2" class="chapter">
+            <h2>📊 الفصل الثاني: تحليل الوضع الحالي والتحديات</h2>
+
+            <h3>🔍 دراسة ميدانية شاملة</h3>
+
+            <div class="highlight">
+                <h4>📋 منهجية الدراسة</h4>
+                <p>دراسة ميدانية شاملة في محافظة حمص (يناير - مارس 2024) شملت:</p>
+                <ul>
+                    <li>بعض  المقابلات  مع مسؤولين</li>
+                    <li> استطلاع رأي للمواطنين</li>
+                    <li> معاملة نموذجية محللة</li>
+                    <li> مشروعاً محلياً مدروساً</li>
+                </ul>
+            </div>
+
+            <h4>📈 النتائج "وهي ارقام تقديرية"</h4>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>المؤشر</th>
+                    <th>النتيجة الحالية</th>
+                    <th>المعيار الدولي</th>
+                    <th>الفجوة</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>متوسط زمن رخصة البناء</td>
+                    <td>22 يوم عمل</td>
+                    <td>3-5 أيام</td>
+                    <td>77%</td>
+                </tr>
+                <tr>
+                    <td>معدل رضا المواطنين</td>
+                    <td>18%</td>
+                    <td>70%+</td>
+                    <td>74%</td>
+                </tr>
+                <tr>
+                    <td>نسبة الشكاوى المحلولة</td>
+                    <td>23%</td>
+                    <td>85%+</td>
+                    <td>73%</td>
+                </tr>
+                <tr>
+                    <td>شفافية المعلومات</td>
+                    <td>12%</td>
+                    <td>80%+</td>
+                    <td>85%</td>
+                </tr>
+                <tr>
+                    <td>نسبة العمليات المرقمنة</td>
+                    <td>8%</td>
+                    <td>90%+</td>
+                    <td>91%</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h4>💸 التكاليف الخفية الهائلة</h4>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">2.85M</span>
+                    <div class="stat-label">التكلفة السنوية الحالية على المواطنين</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">890</span>
+                    <div class="stat-label">ألف ليرة سوية تكلفة مواصلات للمراجعات</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">1.2M</span>
+                    <div class="stat-label">رسوم وسطاء غير رسمية سنوياً</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">18M</span>
+                    <div class="stat-label">ورقة استهلاك سنوي</div>
+                </div>
+            </div>
+
+            <h3>🎯 تحليل أصحاب المصلحة</h3>
+
+            <h4>👥 المواطنون (1.8 مليون نسمة)</h4>
+            <div class="highlight">
+                <h5>التصنيف الديموغرافي:</h5>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 42%"></div>
+                </div>
+                <p><strong>42% شباب (18-35 سنة)</strong> - الأكثر تقبلاً للتقنية</p>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 35%"></div>
+                </div>
+                <p><strong>35% متوسطو العمر (36-55 سنة)</strong> - يحتاجون دعم تقني</p>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 23%"></div>
+                </div>
+                <p><strong>23% كبار السن (55+ سنة)</strong> - يفضلون الخدمة التقليدية</p>
+            </div>
+
+            <h4>🏛️ الموظفون الحكوميون (8,247 موظف)</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>المستوى الإداري</th>
+                    <th>العدد</th>
+                    <th>المخاوف الرئيسية</th>
+                    <th>التوقعات</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>الإدارة العليا</td>
+                    <td>156</td>
+                    <td>فقدان السيطرة</td>
+                    <td>تحسين الكفاءة</td>
+                </tr>
+                <tr>
+                    <td>الإدارة المتوسطة</td>
+                    <td>892</td>
+                    <td>تعقيد التقنية</td>
+                    <td>أدوات أفضل للعمل</td>
+                </tr>
+                <tr>
+                    <td>الموظفون التنفيذيون</td>
+                    <td>7,199</td>
+                    <td>فقدان الوظائف</td>
+                    <td>تبسيط المهام</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h3>⚖️ تحليل SWOT للوضع الحالي</h3>
+
+            <div class="stats-grid">
+                <div class="stat-card" style="border-top: 4px solid #28a745;">
+                    <h4 style="color: #28a745;">نقاط القوة</h4>
+                    <ul style="text-align: right; padding: 0;">
+                        <li>إطار قانوني حديث (المرسوم 107)</li>
+                        <li>قاعدة شبابية كبيرة (65% تحت 45 سنة)</li>
+                        <li>خبرات تقنية متوفرة</li>
+                        <li>ثقافة العمل الجماعي</li>
+                    </ul>
+                </div>
+
+                <div class="stat-card" style="border-top: 4px solid #dc3545;">
+                    <h4 style="color: #dc3545;">نقاط الضعف</h4>
+                    <ul style="text-align: right; padding: 0;">
+                        <li>بنية تحتية محدودة (35% نقص)</li>
+                        <li>مهارات رقمية ضعيفة (60% يحتاجون تدريب)</li>
+                        <li>بيروقراطية معقدة</li>
+                        <li>ضعف التنسيق بين الوحدات</li>
+                    </ul>
+                </div>
+
+                <div class="stat-card" style="border-top: 4px solid #007bff;">
+                    <h4 style="color: #007bff;">الفرص</h4>
+                    <ul style="text-align: right; padding: 0;">
+                        <li>دعم حكومي عالي</li>
+                        <li>استعداد دولي للمساعدة</li>
+                        <li>النافذة الزمنية المناسبة</li>
+                        <li>التقنيات المتاحة بتكلفة منخفضة</li>
+                    </ul>
+                </div>
+
+                <div class="stat-card" style="border-top: 4px solid #ffc107;">
+                    <h4 style="color: #e68900;">التهديدات</h4>
+                    <ul style="text-align: right; padding: 0;">
+                        <li>مقاومة التغيير الداخلية</li>
+                        <li>محدودية الموارد المالية</li>
+                        <li>العقوبات الاقتصادية</li>
+                        <li>عدم الاستقرار الإقليمي</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h4>📊 الخلاصة الرئيسية</h4>
+                <p>تشير الدراسة الميدانية إلى وجود <strong>فجوة كبيرة جداً</strong> بين الوضع الحالي والمعايير الدولية، مما يؤكد الحاجة الماسة للتحول الرقمي. في الوقت نفسه، تتوفر فرص قوية وأصول يمكن البناء عليها لضمان نجاح التحول.</p>
+            </div>
+        </section>
+
+        <!-- الفصل الثالث -->
+        <section id="chapter3" class="chapter">
+            <h2>🎯 الفصل الثالث: رؤية HomsGov للمستقبل</h2>
+
+            <div class="highlight">
+                <h3>🌟 بيان الرؤية الطموحة</h3>
+                <p style="font-size: 1.2rem; font-weight: 600; text-align: center; color: #1b2951;">
+                    "جعل محافظة حمص نموذجاً عالمياً للحوكمة المحلية الرقمية، تجمع بين الكفاءة العالية والشفافية الكاملة والمشاركة المجتمعية الفعلية، لتكون مرجعاً ملهماً للمحافظات السورية والعربية في رحلة التحول نحو مستقبل رقمي مستدام."
+                </p>
+            </div>
+
+            <h3>🏛️ الركائز الأساسية للرؤية</h3>
+
+            <div class="stats-grid">
+                <div class="stat-card" style="border-top: 4px solid #ffc661;">
+                    <h4 style="color: #ffc661;">⚡ الكفاءة القصوى</h4>
+                    <ul style="text-align: right; padding: 0; margin-top: 1rem;">
+                        <li>95% من العمليات مرقمنة</li>
+                        <li>تقليل زمن المعاملات 85%</li>
+                        <li>دقة 99.5% في المعاملات</li>
+                        <li>65% توفير في التكاليف</li>
+                    </ul>
+                </div>
+
+                <div class="stat-card" style="border-top: 4px solid #1b2951;">
+                    <h4 style="color: #1b2951;">🔍 الشفافية الكاملة</h4>
+                    <ul style="text-align: right; padding: 0; margin-top: 1rem;">
+                        <li>100% من القرارات منشورة فوراً</li>
+                        <li>تتبع الموازنة بالزمن الحقيقي</li>
+                        <li>مسار كل معاملة مكشوف</li>
+                        <li>تقارير أداء شهرية لكل وحدة</li>
+                    </ul>
+                </div>
+
+                <div class="stat-card" style="border-top: 4px solid #ffc661;">
+                    <h4 style="color: #ffc661;">🤝 المشاركة الفعلية</h4>
+                    <ul style="text-align: right; padding: 0; margin-top: 1rem;">
+                        <li>50% من المواطنين يشاركون في القرارات</li>
+                        <li>25 مجلس حي رقمي نشط</li>
+                        <li>100 مشروع سنوياً من اقتراحات المواطنين</li>
+                        <li>منصة حوار دائم ومباشر</li>
+                    </ul>
+                </div>
+
+                <div class="stat-card" style="border-top: 4px solid #1b2951;">
+                    <h4 style="color: #1b2951;">♻️ الاستدامة والنمو</h4>
+                    <ul style="text-align: right; padding: 0; margin-top: 1rem;">
+                        <li>استقلالية مالية خلال 5 سنوات</li>
+                        <li>تصدير النموذج لـ8 محافظات</li>
+                        <li>مركز تميز إقليمي</li>
+                        <li>20 حل تقني مبتكر سنوياً</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>📅 الأهداف الاستراتيجية المحددة</h3>
+
+            <h4>🚀 الأهداف قصيرة المدى (6-18 شهر)</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>الهدف</th>
+                    <th>المؤشر الحالي</th>
+                    <th>الهدف المستهدف</th>
+                    <th>نسبة التحسن</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>تقليل زمن رخص البناء</td>
+                    <td>22 يوم</td>
+                    <td>5 أيام</td>
+                    <td>77%</td>
+                </tr>
+                <tr>
+                    <td>زيادة رضا المواطنين</td>
+                    <td>18%</td>
+                    <td>65%</td>
+                    <td>261%</td>
+                </tr>
+                <tr>
+                    <td>رقمنة الخدمات الأساسية</td>
+                    <td>8%</td>
+                    <td>80%</td>
+                    <td>900%</td>
+                </tr>
+                <tr>
+                    <td>تحسين معالجة الشكاوى</td>
+                    <td>23%</td>
+                    <td>75%</td>
+                    <td>226%</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h4>📈 الأهداف متوسطة المدى (1.5-3 سنوات)</h4>
+            <ul>
+                <li><strong>الشفافية:</strong> نشر 100% من قرارات المجالس المحلية خلال 24 ساعة</li>
+                <li><strong>المشاركة:</strong> تسجيل 40% من المواطنين البالغين في المنصة التفاعلية</li>
+                <li><strong>الجودة:</strong> تحقيق معدل استجابة 95% للطلبات المعلوماتية خلال 48 ساعة</li>
+                <li><strong>التفاعل:</strong> تنظيم 100 جلسة حوار مجتمعي سنوياً</li>
+            </ul>
+
+            <h4>🏆 الأهداف طويلة المدى (3-7 سنوات)</h4>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">#1</span>
+                    <div class="stat-label">المركز الأول عربياً في الحوكمة الرقمية</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">800M</span>
+                    <div class="stat-label">إيرادات سنوية من التصدير</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">15</span>
+                    <div class="stat-label">مدينة عربية تطبق النموذج</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">50</span>
+                    <div class="stat-label">حل تقني مبتكر مطور محلياً</div>
+                </div>
+            </div>
+
+            <h3>⚙️ المكونات الأساسية للمنصة</h3>
+
+            <div class="highlight">
+                <h4>🏗️ البنية التقنية المتكاملة</h4>
+                <ul>
+                    <li><strong>المنصة الموحدة للخدمات:</strong> نافذة واحدة لجميع الخدمات المحلية</li>
+                    <li><strong>نظام إدارة المشاريع:</strong> من الفكرة إلى التقييم النهائي</li>
+                    <li><strong>نظم المعلومات الجغرافية:</strong> خرائط ذكية وتحليل مكاني</li>
+                    <li><strong>الذكاء الاصطناعي:</strong> محرك اتخاذ القرارات وأتمتة العمليات</li>
+                </ul>
+            </div>
+
+            <h4>📱 التطبيقات المتخصصة</h4>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h5>👨‍💼 تطبيق المواطن الذكي</h5>
+                    <p>مساعد شخصي ذكي لجميع احتياجات المواطن من الخدمات الحكومية</p>
+                </div>
+                <div class="stat-card">
+                    <h5>🏢 تطبيق الموظف المتقدم</h5>
+                    <p>أدوات عصرية لزيادة كفاءة وإنتاجية الموظف الحكومي</p>
+                </div>
+                <div class="stat-card">
+                    <h5>📊 لوحة قيادة المسؤولين</h5>
+                    <p>رؤية بانورامية شاملة لجميع مؤشرات الأداء والقرارات</p>
+                </div>
+                <div class="stat-card">
+                    <h5>🔒 نظام الأمان المتقدم</h5>
+                    <p>حماية متعددة الطبقات على مستوى البنوك العالمية</p>
+                </div>
+            </div>
+
+            <h3>🗓️ الجدول الزمني للتنفيذ</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">المرحلة الأولى: الأسس (الشهر 1-6)</div>
+                    <p>إنشاء البنية التحتية التقنية، تطوير النواة الأساسية للمنصة، تدريب الفريق الأساسي</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">المرحلة الثانية: التطوير (الشهر 7-12)</div>
+                    <p>تطوير الخدمات الأساسية، إطلاق تطبيق المواطن، بدء التجارب الميدانية</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">المرحلة الثالثة: التوسع (الشهر 13-18)</div>
+                    <p>إضافة الخدمات المتقدمة، نشر واسع للمنصة، تدريب شامل للموظفين</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">المرحلة الرابعة: التطوير (السنة 2-3)</div>
+                    <p>إضافة الذكاء الاصطناعي، تطوير نظم GIS متقدمة، بناء مركز التميز</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- الفصل الرابع -->
+        <section id="chapter4" class="chapter">
+            <h2>💰 الفصل الرابع: الفوائد المتوقعة والعوائد الاستثمارية</h2>
+
+            <h3>👥 الفوائد للمواطنين</h3>
+
+            <h4>⚡ التحسن الجذري في تجربة الخدمة</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>نوع الخدمة</th>
+                    <th>الوضع الحالي</th>
+                    <th>الوضع المستهدف</th>
+                    <th>نسبة التحسن</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>رخصة البناء</td>
+                    <td>22 يوم + 8 مراجعات</td>
+                    <td>3-5 أيام + صفر مراجعات</td>
+                    <td>85%</td>
+                </tr>
+                <tr>
+                    <td>رخصة تجارية</td>
+                    <td>18 يوم + 6 مراجعات</td>
+                    <td>2-3 أيام + صفر مراجعات</td>
+                    <td>88%</td>
+                </tr>
+                <tr>
+                    <td>شهادة سكن</td>
+                    <td>7 أيام + 3 مراجعات</td>
+                    <td>فوري + صفر مراجعات</td>
+                    <td>100%</td>
+                </tr>
+                <tr>
+                    <td>دفع الضرائب</td>
+                    <td>4 ساعات + مراجعتان</td>
+                    <td>10 دقائق + صفر مراجعات</td>
+                    <td>96%</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h4>💵 التوفير المالي السنوي للأسرة الواحدة</h4>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">$850</span>
+                    <div class="stat-label">توفير سنوي في المواصلات لكل أسرة</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">$1,250</span>
+                    <div class="stat-label">قيمة الوقت المهدر المسترد سنوياً</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">$450</span>
+                    <div class="stat-label">توفير رسوم الوسطاء سنوياً</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">$2,800</span>
+                    <div class="stat-label">إجمالي التوفير السنوي لكل أسرة</div>
+                </div>
+            </div>
+
+            <h3>🏛️ الفوائد للإدارة المحلية</h3>
+
+            <h4>⚙️ تحسين الكفاءة التشغيلية</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>العملية</th>
+                    <th>الوقت الحالي</th>
+                    <th>الوقت الرقمي</th>
+                    <th>توفير الوقت</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>معالجة طلب رخصة</td>
+                    <td>4 ساعات موظف</td>
+                    <td>20 دقيقة موظف</td>
+                    <td>83%</td>
+                </tr>
+                <tr>
+                    <td>إعداد تقرير شهري</td>
+                    <td>16 ساعة عمل</td>
+                    <td>2 ساعة عمل</td>
+                    <td>87%</td>
+                </tr>
+                <tr>
+                    <td>معالجة شكوى</td>
+                    <td>6 ساعات متابعة</td>
+                    <td>45 دقيقة متابعة</td>
+                    <td>87%</td>
+                </tr>
+                <tr>
+                    <td>تحديث البيانات</td>
+                    <td>8 ساعات إدخال</td>
+                    <td>تلقائي</td>
+                    <td>100%</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight">
+                <h4>🎯 إعادة توجيه الموارد البشرية</h4>
+                <p>توفير <strong>65% من وقت الموظفين</strong> من الأعمال الروتينية وإعادة توجيههم للمهام الإبداعية والتطوير والتحسين، مما يحسن رضا الموظفين ويزيد الإنتاجية العامة.</p>
+            </div>
+
+            <h3>📊 التحليل المالي والعوائد الاستثمارية</h3>
+            <div class="highlight">
+                <h4>🎯 ملاحظة مهمة</h4>
+                <p> <strong>لكن حاولنا تقريبها</strong> جميع الارقام المذكورة هي ارقام تقديرية وتحتاج الى دراسة على الارض </p>
+            </div>
+            <h4>💸 التكلفة الشاملة للاستثمار</h4>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">$650K</span>
+                    <div class="stat-label">تطوير المنصة والأنظمة (32%)</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">$480K</span>
+                    <div class="stat-label">البنية التحتية التقنية (24%)</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">$320K</span>
+                    <div class="stat-label">التدريب وبناء القدرات (16%)</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">$2.16M</span>
+                    <div class="stat-label">إجمالي الاستثمار (3 سنوات)</div>
+                </div>
+            </div>
+
+            <h4>💰 الوفورات والعوائد السنوية</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>مصدر الوفورات</th>
+                    <th>المبلغ (ألف دولار)</th>
+                    <th>طريقة الحساب</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>تقليل استهلاك الورق</td>
+                    <td>$145</td>
+                    <td>18 مليون ورقة × $0.008</td>
+                </tr>
+                <tr>
+                    <td>توفير ساعات العمل</td>
+                    <td>$920</td>
+                    <td>4,200 ساعة يومياً × $100 متوسط أجر</td>
+                </tr>
+                <tr>
+                    <td>توفير مواصلات المواطنين</td>
+                    <td>$3,800</td>
+                    <td>380,000 مواطن × $10 مشوار</td>
+                </tr>
+                <tr>
+                    <td>تقليل الأخطاء وإعادة العمل</td>
+                    <td>$380</td>
+                    <td>50% تقليل في معدل الأخطاء</td>
+                </tr>
+                <tr>
+                    <td>تحسين كفاءة الطاقة</td>
+                    <td>$220</td>
+                    <td>أتمتة الإضاءة والتجهيزات</td>
+                </tr>
+                <tr>
+                    <td>تقليل المساحات المكتبية</td>
+                    <td>$315</td>
+                    <td>دمج الخدمات وتقليل المكاتب</td>
+                </tr>
+                <tr style="background-color: #e3f2fd; font-weight: bold;">
+                    <td><strong>المجموع السنوي</strong></td>
+                    <td><strong>$5,780</strong></td>
+                    <td><strong>وفورات مباشرة فقط</strong></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h4>📈 مؤشرات العائد على الاستثمار</h4>
+            <div class="stats-grid">
+                <div class="stat-card" style="border-top: 4px solid #ffc661;">
+                    <span class="stat-number">15</span>
+                    <div class="stat-label">شهر فترة استرداد الاستثمار</div>
+                </div>
+                <div class="stat-card" style="border-top: 4px solid #1b2951;">
+                    <span class="stat-number">$6.25M</span>
+                    <div class="stat-label">صافي العائد خلال 5 سنوات</div>
+                </div>
+                <div class="stat-card" style="border-top: 4px solid #ffc661;">
+                    <span class="stat-number">89%</span>
+                    <div class="stat-label">معدل العائد الداخلي السنوي</div>
+                </div>
+                <div class="stat-card" style="border-top: 4px solid #1b2951;">
+                    <span class="stat-number">4.2:1</span>
+                    <div class="stat-label">نسبة الفائدة إلى التكلفة</div>
+                </div>
+            </div>
+
+            <h4>📊 تحليل السيناريوهات</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>السيناريو</th>
+                    <th>الاحتمال</th>
+                    <th>العائد الإجمالي (10 سنوات)</th>
+                    <th>الوصف</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr style="background-color: #d4edda;">
+                    <td>المتفائل</td>
+                    <td>30%</td>
+                    <td>$28.6 مليون</td>
+                    <td>وفورات أعلى + إيرادات تصدير</td>
+                </tr>
+                <tr style="background-color: #d1ecf1;">
+                    <td>الأساسي</td>
+                    <td>50%</td>
+                    <td>$22.4 مليون</td>
+                    <td>تحقيق الوفورات كما هو مخطط</td>
+                </tr>
+                <tr style="background-color: #f8d7da;">
+                    <td>المتحفظ</td>
+                    <td>20%</td>
+                    <td>$16.8 مليون</td>
+                    <td>انخفاض 20% + تأخير 6 أشهر</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight">
+                <h4>🎯 الخلاصة المالية</h4>
+                <p><strong>حتى في أسوأ السيناريوهات، المشروع مربح جداً ومجدي اقتصادياً.</strong> العائد مضمون والمخاطر محسوبة، مما يجعل هذا الاستثمار فرصة استثنائية لتحقيق عوائد مالية كبيرة مع تأثير اجتماعي إيجابي هائل.</p>
+            </div>
+
+            <h4>🌟 العوائد غير المباشرة</h4>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">20%</span>
+                    <div class="stat-label">زيادة في الاستثمارات  </div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2,500</span>
+                    <div class="stat-label">على اقل توفير فرص عمل جديدة</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">35%</span>
+                    <div class="stat-label">زيادة في الإيرادات المحلية</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">75%</span>
+                    <div class="stat-label">هدف تحسين الثقة في المؤسسات</div>
+                </div>
+            </div>
+
+            <h3>🏆 مقارنة مع البدائل</h3>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>البديل</th>
+                    <th>التكلفة</th>
+                    <th>العوائد</th>
+                    <th>المخاطر</th>
+                    <th>التوصية</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr style="background-color: #f8d7da;">
+                    <td>عدم الاستثمار</td>
+                    <td>صفر</td>
+                    <td>تراجع مستمر</td>
+                    <td>فقدان التنافسية</td>
+                    <td>❌ غير مقبول</td>
+                </tr>
+                <tr style="background-color: #fff3cd;">
+                    <td>الاستثمار الجزئي</td>
+                    <td>50% من التكلفة</td>
+                    <td>30% من العوائد</td>
+                    <td>حلول مؤقتة</td>
+                    <td>⚠️ غير مجدي</td>
+                </tr>
+                <tr style="background-color: #d4edda;">
+                    <td>HomsGov الكامل</td>
+                    <td>$2.16 مليون</td>
+                    <td>$22.4 مليون</td>
+                    <td>مخاطر محسوبة</td>
+                    <td>✅ موصى بقوة</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="alert alert-success">
+                <h4>🎉 الخلاصة النهائية</h4>
+                <p>مشروع HomsGov يمثل استثماراً استراتيجياً آمناً مع عوائد مالية مضمونة وتأثير حضاري كبير. هذا المشروع سيضع محافظة حمص على خريطة التميز العالمي في الحوكمة الرقمية.</p>
+            </div>
+        </section>
+
+        <!-- الفصل الخامس -->
+        <section id="chapter5" class="chapter">
+            <h2>🏛️ الفصل الخامس: الهيكل الإداري ونظام المراقبة</h2>
+            
+            <div class="highlight">
+                <h3>📋 الملخص التنفيذي للوزراء والمحافظين والمانحين</h3>
+                <p>هذا الفصل يقدم رؤية شاملة للهيكل الإداري الرقمي وآليات التطبيق العملي، مع التركيز على <strong>المسؤوليات والصلاحيات والعوائد المالية</strong> بطريقة تناسب صناع القرار.</p>
+            </div>
+
+            <h3>🏛️ الهيكل الإداري الرقمي ونظام المراقبة</h3>
+
+            <h4>📊 توزيع المسؤوليات والصلاحيات</h4>
+
+            <div class="stats-grid">
+                <div class="stat-card" style="border-top: 4px solid #1b2951;">
+                    <h5 style="color: #1b2951;">🎯 مستوى المحافظة</h5>
+                    <div style="text-align: right; margin-top: 1rem;">
+                        <p><strong>القيادة الاستراتيجية</strong></p>
+                        <ul style="font-size: 0.9rem;">
+                            <li>الإشراف العام على التطبيق</li>
+                            <li>مراقبة مؤشرات الأداء</li>
+                            <li>اعتماد السياسات المحلية</li>
+                            <li>التنسيق مع الوزارات</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="stat-card" style="border-top: 4px solid #ffc661;">
+                    <h5 style="color: #ffc661;">⚙️ مستوى النواحي</h5>
+                    <div style="text-align: right; margin-top: 1rem;">
+                        <p><strong>التنفيذ والمتابعة</strong></p>
+                        <ul style="font-size: 0.9rem;">
+                            <li>تنفيذ الخدمات الرقمية</li>
+                            <li>مراقبة المراكز التابعة</li>
+                            <li>رفع التقارير الدورية</li>
+                            <li>التنسيق المحلي</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="stat-card" style="border-top: 4px solid #1b2951;">
+                    <h5 style="color: #1b2951;">🔧 مستوى المراكز</h5>
+                    <div style="text-align: right; margin-top: 1rem;">
+                        <p><strong>الخدمة المباشرة</strong></p>
+                        <ul style="font-size: 0.9rem;">
+                            <li>تقديم الخدمات المباشرة</li>
+                            <li>إدخال وتحديث البيانات</li>
+                            <li>التقارير اليومية</li>
+                            <li>الدعم الفني للمواطنين</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h4>📈 نظام المراقبة والتقييم المتكامل</h4>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>نوع المراقبة</th>
+                    <th>التكرار</th>
+                    <th>المسؤول</th>
+                    <th>المؤشرات الرئيسية</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>المراقبة اليومية</td>
+                    <td>24/7</td>
+                    <td>لوحة القيادة المركزية</td>
+                    <td>حالة الخدمات، معدلات الإنجاز، الشكاوى</td>
+                </tr>
+                <tr>
+                    <td>التقارير الأسبوعية</td>
+                    <td>كل أسبوع</td>
+                    <td>النواحي → المحافظة</td>
+                    <td>الإنجازات، المشاكل، الاحتياجات</td>
+                </tr>
+                <tr>
+                    <td>التقارير الشهرية</td>
+                    <td>كل شهر</td>
+                    <td>المحافظة → الوزارات</td>
+                    <td>الأداء العام، الإحصائيات، التوصيات</td>
+                </tr>
+                <tr>
+                    <td>التقييم السنوي</td>
+                    <td>سنوياً</td>
+                    <td>لجان متخصصة</td>
+                    <td>تقييم شامل، خطط التطوير</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h3>🎯 الفرصة الاستراتيجية والتحدي الحالي</h3>
+
+            <div class="highlight">
+                <h4>⚡ لماذا الآن؟</h4>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 72%"></div>
+                </div>
+                <p><strong>72% من السوريين يملكون هواتف ذكية</strong></p>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <p><strong>85% من الشباب متقبلون للحلول الرقمية</strong></p>
+            </div>
+
+            <h4>📊 التحدي الحالي بالأرقام</h4>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">20</span>
+                    <div class="stat-label">يوم متوسط إنجاز المعاملة (المعيار: 3-5 أيام)</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">21%</span>
+                    <div class="stat-label">رضا المواطنين (المطلوب: 70%+)</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">285B</span>
+                    <div class="stat-label">ليرة التكلفة السنوية على المواطنين</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">485K</span>
+                    <div class="stat-label">ساعة انتظار سنوياً في الطوابير</div>
+                </div>
+            </div>
+
+            <h3>💰 الاستثمار والعوائد (تقديرات أولية)</h3>
+
+            <div class="alert alert-warning">
+                <h4>⚠️ تحذير مهم</h4>
+                <p><strong>جميع الأرقام المالية أولية وتحتاج إلى دراسات جدوى مفصلة لمدة 6 أشهر قبل اتخاذ أي قرارات استثمارية.</strong></p>
+            </div>
+
+<!--            <h4>💸 الاستثمار المطلوب (تقديري)</h4>-->
+<!--            <table class="table">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>البند</th>-->
+<!--                    <th>المبلغ (ألف دولار)</th>-->
+<!--                    <th>النسبة</th>-->
+<!--                    <th>الوصف</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                <tr>-->
+<!--                    <td>تطوير المنصة والأنظمة</td>-->
+<!--                    <td>$45</td>-->
+<!--                    <td>21%</td>-->
+<!--                    <td>البرمجة والتطوير التقني</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>البنية التحتية التقنية</td>-->
+<!--                    <td>$30</td>-->
+<!--                    <td>14%</td>-->
+<!--                    <td>الخوادم والشبكات</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>الكوادر التقنية المتخصصة</td>-->
+<!--                    <td>$400</td>-->
+<!--                    <td>19%</td>-->
+<!--                    <td>44 موظف متخصص</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>التدريب وبناء القدرات</td>-->
+<!--                    <td>$200</td>-->
+<!--                    <td>9%</td>-->
+<!--                    <td>تدريب شامل للموظفين</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>جمع وتنظيم البيانات</td>-->
+<!--                    <td>$150</td>-->
+<!--                    <td>7%</td>-->
+<!--                    <td>رقمنة البيانات الحالية</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>نظم المعلومات الجغرافية</td>-->
+<!--                    <td>$180</td>-->
+<!--                    <td>8%</td>-->
+<!--                    <td>خرائط رقمية وGIS</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>التسويق والتوعية</td>-->
+<!--                    <td>$150</td>-->
+<!--                    <td>7%</td>-->
+<!--                    <td>حملات توعية المواطنين</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>إدارة المشروع</td>-->
+<!--                    <td>$125</td>-->
+<!--                    <td>6%</td>-->
+<!--                    <td>فريق إدارة التطبيق</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>احتياطي المخاطر</td>-->
+<!--                    <td>$200</td>-->
+<!--                    <td>9%</td>-->
+<!--                    <td>مواجهة المخاطر المحتملة</td>-->
+<!--                </tr>-->
+<!--                <tr style="background-color: #e3f2fd; font-weight: bold;">-->
+<!--                    <td><strong>الإجمالي</strong></td>-->
+<!--                    <td><strong>$2,155</strong></td>-->
+<!--                    <td><strong>100%</strong></td>-->
+<!--                    <td><strong>استثمار شامل</strong></td>-->
+<!--                </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+
+            <h4>🧑‍💻 متطلبات الكوادر التقنية</h4>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">44</span>
+                    <div class="stat-label">موظف تقني متخصص مطلوب</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">400-1200</span>
+                    <div class="stat-label">دولار راتب شهري حسب الخبرة</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">313,200</span>
+                    <div class="stat-label">دولار تكلفة سنوية للكوادر</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">18-24</span>
+                    <div class="stat-label">شهر نقطة التعادل المتوقعة</div>
+                </div>
+            </div>
+
+            <h3>📅 خطة التنفيذ السريعة</h3>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">المرحلة الأولى (0-6 أشهر): إطلاق الخدمات الأساسية</div>
+                    <ul>
+                        <li>تدريب 100% من الموظفين على النظام الجديد</li>
+                        <li>إطلاق 15 خدمة أساسية رقمياً</li>
+                        <li>تحقيق 60% رضا مواطنين في الخدمات المرقمنة</li>
+                        <li>بناء البنية التحتية التقنية الأساسية</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">المرحلة الثانية (6-18 شهر): التوسع والتكامل</div>
+                    <ul>
+                        <li>رقمنة 80% من جميع الخدمات المحلية</li>
+                        <li>تفعيل الشفافية المالية الكاملة</li>
+                        <li>إطلاق المشاركة المجتمعية الرقمية</li>
+                        <li>تطبيق نظم المعلومات الجغرافية</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">المرحلة الثالثة (18-36 شهر): التميز والنشر</div>
+                    <ul>
+                        <li>تحقيق معايير الحوكمة الدولية</li>
+                        <li>تصدير النموذج لمحافظات أخرى</li>
+                        <li>تأسيس مركز التميز الإقليمي</li>
+                        <li>تطوير حلول الذكاء الاصطناعي المتقدمة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>🌟 المخاطر وإدارتها</h3>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>المخاطر الرئيسية</th>
+                    <th>الاحتمال</th>
+                    <th>التأثير</th>
+                    <th>استراتيجية الحل</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>مقاومة التغيير</td>
+                    <td>متوسط</td>
+                    <td>عالي</td>
+                    <td>التدريب المكثف والحوافز</td>
+                </tr>
+                <tr>
+                    <td>قيود التمويل</td>
+                    <td>متوسط</td>
+                    <td>عالي</td>
+                    <td>التطبيق المرحلي والشراكات</td>
+                </tr>
+                <tr>
+                    <td>البنية التحتية</td>
+                    <td>عالي</td>
+                    <td>متوسط</td>
+                    <td>الحلول البديلة والتطوير التدريجي</td>
+                </tr>
+                <tr>
+                    <td>الأمان السيبراني</td>
+                    <td>منخفض</td>
+                    <td>عالي جداً</td>
+                    <td>الاستثمار في أحدث تقنيات الحماية</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h3>🎖️ التأثير الاستراتيجي طويل المدى</h3>
+
+            <div class="stats-grid">
+                <div class="stat-card" style="border-top: 4px solid #1b2951;">
+                    <h5 style="color: #1b2951;">المستوى المحلي</h5>
+                    <ul style="text-align: right; font-size: 0.9rem;">
+                        <li>تحسين حياة 1.85 مليون مواطن</li>
+                        <li>خلق 2,500 فرصة عمل تقنية</li>
+                        <li>جذب $50 مليون استثمارات</li>
+                    </ul>
+                </div>
+                
+                <div class="stat-card" style="border-top: 4px solid #ffc661;">
+                    <h5 style="color: #ffc661;">المستوى الوطني</h5>
+                    <ul style="text-align: right; font-size: 0.9rem;">
+                        <li>نموذج لـ14 محافظة أخرى</li>
+                        <li>تحسين صورة سوريا دولياً</li>
+                        <li>جذب الكفاءات والاستثمارات</li>
+                    </ul>
+                </div>
+                
+                <div class="stat-card" style="border-top: 4px solid #1b2951;">
+                    <h5 style="color: #1b2951;">المستوى الإقليمي</h5>
+                    <ul style="text-align: right; font-size: 0.9rem;">
+                        <li>مركز التميز العربي</li>
+                        <li>صادرات تقنية لدول الجوار</li>
+                        <li>قيادة التحول الرقمي</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>⚡ دعوة للعمل الفوري</h3>
+
+            <div class="highlight">
+                <h4>📞 الخطوة التالية - المطلوب الآن:</h4>
+                <ol>
+                    <li><strong>موافقة مبدئية</strong> على المشروع كمفهوم استراتيجي</li>
+                    <li><strong>تخصيص موازنة الدراسات التحضيرية</strong> ($370 ألف دولار)</li>
+                    <li><strong>تشكيل لجنة قيادة عليا</strong> للإشراف والمتابعة</li>
+                    <li><strong>إجراء الدراسات الميدانية المطلوبة</strong>:
+                        <ul>
+                            <li>دراسة جدوى اقتصادية مفصلة (6 أشهر)</li>
+                            <li>مسح ميداني شامل للأوضاع الحالية (4 أشهر)</li>
+                            <li>تحليل سوق العمل التقني المحلي (3 أشهر)</li>
+                            <li>تقييم البنية التحتية الفعلية (2 أشهر)</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="alert alert-info">
+                <h4>📌 إخلاء مسؤولية مهم</h4>
+                <ul>
+                    <li><strong>جميع الأرقام المالية تقديرية</strong> وتحتاج تأكيد ميداني</li>
+                    <li><strong>البيانات الإحصائية</strong> من مصادر 2010 وتحتاج تحديث</li>
+                    <li><strong>مؤشرات الأداء</strong> مقدرة وتحتاج قياس دقيق</li>
+                    <li><strong>العوائد المتوقعة</strong> مبنية على نماذج دولية وتحتاج تكييف محلي</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <blockquote style="font-style: italic; text-align: center; font-size: 1.1rem; margin: 2rem 0; color: #1b2951;">
+                    "محافظة حمص على أعتاب تحول تاريخي. الرؤية واضحة، والطريق مرسوم، والإمكانات متوفرة. الوقت قد حان للانتقال من التخطيط إلى التطبيق، ومن الحلم إلى الإنجاز."
+                </blockquote>
+                <p style="text-align: center; font-weight: 600; color: #ffc661;">
+                    <strong>مشروع HomsGov: استثمار في مستقبل سوريا الرقمي</strong>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div>
+            <h3>📧 للمزيد من المعلومات</h3>
+            <p>هذا عرض تقديمي لمشروع HomsGov - منصة الحوكمة الرقمية لمحافظة حمص</p>
+            <p><strong>فريق التطوير:</strong>المهندس إحسان الأتاسي </p>
+            <div class="stats-grid" style="margin-top: 2rem;">
+                <div class="stat-card">
+                    <span class="stat-number">إعادة الإعمار</span>
+                    <div class="stat-label">فرصة لبناء أنظمة حديثة من الأساس</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">استعادة الثقة</span>
+                    <div class="stat-label">لتحسين العلاقة بين المواطن والحكومة</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">الكفاءة الاقتصادية</span>
+                    <div class="stat-label">تحسين استخدام الموارد المحدودة المتاحة</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">5Y</span>
+                    <div class="stat-label">نصبح من المدن الذكية</div>
+                </div>
+            </div>
+            <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
+                © 2024 HomsGov Project. جميع الحقوق محفوظة. مطور بواسطة فريق متخصص في الحوكمة الرقمية.
+            </p>
+        </div>
+    </footer>
+</div>
+
+<button class="back-to-top" onclick="scrollToTop()">⬆️</button>
+
+<script>
+    // متغيرات عامة
+    let currentChapter = 'overview';
+    
+    // إظهار الفصول
+    function showChapter(chapterId) {
+        // إخفاء جميع الفصول
+        const chapters = document.querySelectorAll('.chapter');
+        chapters.forEach(chapter => {
+            chapter.classList.remove('active');
+        });
+
+        // إزالة الفئة النشطة من جميع الروابط
+        const navLinks = document.querySelectorAll('.nav a');
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+
+        // إظهار الفصل المحدد
+        const targetChapter = document.getElementById(chapterId);
+        if (targetChapter) {
+            targetChapter.classList.add('active');
+            
+            // إضافة الفئة النشطة للرابط الحالي
+            const currentNavLink = document.getElementById(`nav-${chapterId}`);
+            if (currentNavLink) {
+                currentNavLink.classList.add('active');
+            }
+            
+            currentChapter = chapterId;
+        }
+
+        // تحديث الرابط في المتصفح
+        window.history.pushState({}, '', `#${chapterId}`);
+
+        // الانتقال لأعلى المحتوى
+        document.querySelector('.content').scrollIntoView({ behavior: 'smooth' });
+        
+        // تحديث أشرطة التقدم
+        updateProgressBars();
+        
+        // إضافة تأثير الظهور
+        targetChapter.style.opacity = '0';
+        setTimeout(() => {
+            targetChapter.style.opacity = '1';
+        }, 100);
+    }
+
+    // العودة لأعلى الصفحة
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // إظهار/إخفاء زر العودة لأعلى
+    function handleScroll() {
+        const backToTop = document.querySelector('.back-to-top');
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+        
+        // تحديث شريط التنقل الثابت
+        const nav = document.querySelector('.nav');
+        if (window.pageYOffset > 100) {
+            nav.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+        } else {
+            nav.style.boxShadow = 'none';
+        }
+    }
+
+    // تحديث أشرطة التقدم
+    function updateProgressBars() {
+        setTimeout(() => {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 200);
+            });
+        }, 300);
+    }
+
+    // إضافة تأثيرات تفاعلية للجداول
+    function initTableEffects() {
+        const tables = document.querySelectorAll('.table');
+        tables.forEach(table => {
+            const rows = table.querySelectorAll('tbody tr');
+            rows.forEach((row, index) => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#e3f2fd';
+                    this.style.transform = 'scale(1.02)';
+                    this.style.transition = 'all 0.2s ease';
+                    this.style.zIndex = '10';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = index % 2 === 0 ? 'white' : '#f8f9fa';
+                    this.style.transform = 'scale(1)';
+                    this.style.zIndex = 'auto';
+                });
+            });
+        });
+    }
+
+    // إضافة تأثيرات للبطاقات
+    function initCardEffects() {
+        const cards = document.querySelectorAll('.stat-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+                this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+            });
+        });
+    }
+
+    // إضافة أصوات للتفاعل (اختياري)
+    function playClickSound() {
+        // يمكن إضافة ملف صوتي بسيط للنقرات إذا رغبت
+        // const audio = new Audio('click.mp3');
+        // audio.play().catch(e => console.log('Sound not available'));
+    }
+
+    // إضافة لوحة مفاتيح للتنقل
+    function initKeyboardNavigation() {
+        document.addEventListener('keydown', function(e) {
+            const chapters = ['overview', 'chapter1', 'chapter2', 'chapter3', 'chapter4', 'chapter5'];
+            const currentIndex = chapters.indexOf(currentChapter);
+            
+            switch(e.key) {
+                case 'ArrowRight':
+                    if (currentIndex < chapters.length - 1) {
+                        showChapter(chapters[currentIndex + 1]);
+                    }
+                    break;
+                case 'ArrowLeft':
+                    if (currentIndex > 0) {
+                        showChapter(chapters[currentIndex - 1]);
+                    }
+                    break;
+                case 'Home':
+                    showChapter('overview');
+                    break;
+                case 'Escape':
+                    scrollToTop();
+                    break;
+            }
+        });
+    }
+
+    // تحميل الفصل بناءً على الرابط
+    function initializeFromURL() {
+        const hash = window.location.hash.substring(1);
+        if (hash && document.getElementById(hash)) {
+            showChapter(hash);
+        } else {
+            updateProgressBars();
+        }
+    }
+
+    // إضافة معالج الأحداث للتمرير
+    window.addEventListener('scroll', handleScroll);
+
+    // التهيئة عند تحميل الصفحة
+    window.addEventListener('load', function() {
+        initializeFromURL();
+        initTableEffects();
+        initCardEffects();
+        initKeyboardNavigation();
+        
+        // إضافة تأثير ظهور تدريجي للمحتوى
+        document.body.style.opacity = '0';
+        setTimeout(() => {
+            document.body.style.transition = 'opacity 0.5s ease';
+            document.body.style.opacity = '1';
+        }, 100);
+    });
+
+    // إضافة معالج للنقر على الروابط
+    document.querySelectorAll('.nav a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            playClickSound();
+            // إضافة تأثير نقر
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+    });
+
+    // دعم اللمس للأجهزة المحمولة
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const chapters = ['overview', 'chapter1', 'chapter2', 'chapter3', 'chapter4', 'chapter5'];
+        const currentIndex = chapters.indexOf(currentChapter);
+        const swipeThreshold = 50;
+        
+        if (touchEndX < touchStartX - swipeThreshold) {
+            // السوايب لليسار - الفصل التالي
+            if (currentIndex < chapters.length - 1) {
+                showChapter(chapters[currentIndex + 1]);
+            }
+        }
+        
+        if (touchEndX > touchStartX + swipeThreshold) {
+            // السوايب لليمين - الفصل السابق
+            if (currentIndex > 0) {
+                showChapter(chapters[currentIndex - 1]);
+            }
+        }
+    }
+
+    // إضافة دعم الطباعة
+    window.addEventListener('beforeprint', function() {
+        // إظهار جميع الفصول للطباعة
+        document.querySelectorAll('.chapter').forEach(chapter => {
+            chapter.style.display = 'block';
+        });
+    });
+
+    window.addEventListener('afterprint', function() {
+        // إخفاء الفصول غير النشطة بعد الطباعة
+        document.querySelectorAll('.chapter').forEach(chapter => {
+            if (!chapter.classList.contains('active')) {
+                chapter.style.display = 'none';
+            }
+        });
+    });
+
+    // إضافة مؤشر التقدم في القراءة
+    function updateReadingProgress() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        
+        // يمكن إضافة شريط تقدم في أعلى الصفحة
+        // document.getElementById("progressBar").style.width = scrolled + "%";
+    }
+
+    window.addEventListener('scroll', updateReadingProgress);
+</script>
+</body>
+</html>
