@@ -64,6 +64,51 @@
             z-index: 100;
         }
 
+        .mobile-menu-toggle {
+            display: none;
+            background: #1b2951;
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 101;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: #ffc661;
+            color: #1b2951;
+        }
+
+        .mobile-menu-toggle.active {
+            background: #ffc661;
+            color: #1b2951;
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.show {
+            display: block;
+            opacity: 1;
+        }
+
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -650,15 +695,56 @@
                 font-size: 2rem;
             }
 
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-container {
+                position: relative;
+            }
+
             .nav ul {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(248, 249, 250, 0.98);
+                backdrop-filter: blur(10px);
                 flex-direction: column;
-                align-items: center;
-                gap: 0.5rem;
+                align-items: stretch;
+                gap: 0;
+                padding: 4rem 1rem 2rem;
+                transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+                z-index: 100;
+            }
+
+            .nav ul.mobile-menu-open {
+                right: 0;
+            }
+
+            .nav li {
+                background: transparent;
+                box-shadow: none;
+                margin-bottom: 0.5rem;
+                border-radius: 0;
             }
 
             .nav a {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                border-radius: 8px;
+                background: white;
+                margin: 0;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                border: 1px solid #e9ecef;
+            }
+
+            .nav a:hover, .nav a.active {
+                background: #1b2951;
+                color: white;
+                transform: translateX(5px);
             }
 
             .content {
@@ -774,16 +860,22 @@
 
     <nav class="nav">
         <div class="nav-container">
-            <ul>
-                <li><a href="#overview" onclick="showChapter('overview')" id="nav-overview">📋 نظرة عامة</a></li>
-                <li><a href="#chapter1" onclick="showChapter('chapter1')" id="nav-chapter1">🌍 التحول الرقمي</a></li>
-                <li><a href="#chapter2" onclick="showChapter('chapter2')" id="nav-chapter2">📊 تحليل الوضع الحالي</a></li>
-                <li><a href="#chapter3" onclick="showChapter('chapter3')" id="nav-chapter3">🎯 رؤية المستقبل</a></li>
-                <li><a href="#chapter4" onclick="showChapter('chapter4')" id="nav-chapter4">💰 الفوائد والعوائد</a></li>
-                <li><a href="#chapter5" onclick="showChapter('chapter5')" id="nav-chapter5">🏛️ الهيكل الإداري</a></li>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
+                <span id="menu-icon">☰</span>
+            </button>
+            <ul id="nav-menu">
+                <li><a href="#overview" onclick="showChapter('overview'); closeMobileMenu()" id="nav-overview">📋 نظرة عامة</a></li>
+                <li><a href="#chapter1" onclick="showChapter('chapter1'); closeMobileMenu()" id="nav-chapter1">🌍 التحول الرقمي</a></li>
+                <li><a href="#chapter2" onclick="showChapter('chapter2'); closeMobileMenu()" id="nav-chapter2">📊 تحليل الوضع الحالي</a></li>
+                <li><a href="#chapter3" onclick="showChapter('chapter3'); closeMobileMenu()" id="nav-chapter3">🎯 رؤية المستقبل</a></li>
+                <li><a href="#chapter4" onclick="showChapter('chapter4'); closeMobileMenu()" id="nav-chapter4">💰 الفوائد والعوائد</a></li>
+                <li><a href="#chapter5" onclick="showChapter('chapter5'); closeMobileMenu()" id="nav-chapter5">🏛️ الهيكل الإداري</a></li>
             </ul>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-overlay" onclick="closeMobileMenu()"></div>
 
     <!-- Quick Navigation Forward -->
     <div style="background: linear-gradient(135deg, #1b2951 0%, #ffc661 100%); padding: 1rem 0; text-align: center;">
@@ -2022,8 +2114,39 @@
 <button class="back-to-top" onclick="scrollToTop()">⬆️</button>
 
 <script>
-    // باقي JavaScript كما هو في الكود الأصلي...
+    // متغيرات عامة
     let currentChapter = 'overview';
+    let mobileMenuOpen = false;
+
+    // وظائف القائمة المحمولة
+    function toggleMobileMenu() {
+        const navMenu = document.getElementById('nav-menu');
+        const overlay = document.getElementById('mobile-overlay');
+        const menuIcon = document.getElementById('menu-icon');
+        const toggleButton = document.querySelector('.mobile-menu-toggle');
+        
+        mobileMenuOpen = !mobileMenuOpen;
+        
+        if (mobileMenuOpen) {
+            navMenu.classList.add('mobile-menu-open');
+            overlay.classList.add('show');
+            menuIcon.innerHTML = '✕';
+            toggleButton.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        } else {
+            navMenu.classList.remove('mobile-menu-open');
+            overlay.classList.remove('show');
+            menuIcon.innerHTML = '☰';
+            toggleButton.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    function closeMobileMenu() {
+        if (mobileMenuOpen) {
+            toggleMobileMenu();
+        }
+    }
     
     function showChapter(chapterId) {
         const chapters = document.querySelectorAll('.chapter');
