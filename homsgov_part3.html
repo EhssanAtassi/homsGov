@@ -1,1756 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomsGov - الجزء الثالث: الحلول والتطبيقات</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Cairo', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #1b2951 0%, #1b2951 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: #fcfcfb;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            min-height: 100vh;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #1b2951 0%, #28a745 100%);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        .header .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 1rem;
-        }
-
-        .header .description {
-            font-size: 1rem;
-            opacity: 0.8;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .nav {
-            background: #f8f9fa;
-            padding: 1rem 0;
-            border-bottom: 2px solid #e9ecef;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .nav ul {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .nav li {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .nav li:hover {
-            transform: translateY(-2px);
-        }
-
-        .nav a {
-            display: block;
-            padding: 0.8rem 1.5rem;
-            text-decoration: none;
-            color: #1b2951;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .nav a:hover, .nav a.active {
-            background: #28a745;
-            color: white;
-        }
-
-        .content {
-            padding: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .chapter {
-            display: none;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        .chapter.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .chapter h2 {
-            color: #1b2951;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            border-bottom: 3px solid #28a745;
-            padding-bottom: 0.5rem;
-        }
-
-        .chapter h3 {
-            color: #1b2951;
-            font-size: 1.5rem;
-            margin: 2rem 0 1rem 0;
-        }
-
-        .chapter h4 {
-            color: #495057;
-            font-size: 1.2rem;
-            margin: 1.5rem 0 1rem 0;
-        }
-
-        .chapter h5 {
-            color: #6c757d;
-            font-size: 1.1rem;
-            margin: 1rem 0 0.5rem 0;
-        }
-
-        .chapter p {
-            margin-bottom: 1rem;
-            text-align: justify;
-        }
-
-        .chapter ul, .chapter ol {
-            margin: 1rem 0;
-            padding-right: 2rem;
-        }
-
-        .chapter li {
-            margin-bottom: 0.5rem;
-        }
-
-        .highlight {
-            background: linear-gradient(120deg, #28a745 0%, #fcfcfb 100%);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 1.5rem 0;
-            border-right: 4px solid #1b2951;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .stat-card {
-            background: #fcfcfb;
-            border: 1px solid #e9ecef;
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #28a745;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #6c757d;
-            margin-top: 0.5rem;
-        }
-
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-            background: #fcfcfb;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .table th {
-            background: #1b2951;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .table td {
-            padding: 1rem;
-            border-bottom: 1px solid #e9ecef;
-            text-align: center;
-        }
-
-        .table tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-
-        .progress-bar {
-            background: #e9ecef;
-            border-radius: 10px;
-            height: 20px;
-            margin: 1rem 0;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #1b2951, #28a745);
-            border-radius: 10px;
-            transition: width 1s ease;
-        }
-
-        .footer {
-            background: #1b2951;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-        }
-
-        .timeline {
-            position: relative;
-            margin: 2rem 0;
-        }
-
-        .timeline-item {
-            background: #fcfcfb;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            border-right: 4px solid #28a745;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .timeline-date {
-            font-weight: 700;
-            color: #1b2951;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-card {
-            background: #fcfcfb;
-            border: 1px solid #e9ecef;
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #1b2951, #28a745);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: #28a745;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            opacity: 0;
-            visibility: hidden;
-            font-size: 1.2rem;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-2px);
-            background: #1b2951;
-        }
-
-        .service-flow {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .flow-step {
-            background: linear-gradient(135deg, #28a745, #20c997);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            text-align: center;
-            position: relative;
-        }
-
-        .flow-step::after {
-            content: '⬅️';
-            position: absolute;
-            top: 50%;
-            left: -15px;
-            transform: translateY(-50%);
-            font-size: 1.5rem;
-        }
-
-        .flow-step:first-child::after {
-            display: none;
-        }
-
-        .architecture-diagram {
-            background: #f8f9fa;
-            border: 2px solid #28a745;
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .tech-stack {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .tech-item {
-            background: white;
-            border: 2px solid #28a745;
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .tech-item:hover {
-            background: #28a745;
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .navigation-container {
-            background: #e3f2fd;
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 3rem 0;
-            text-align: center;
-        }
-
-        .nav-button {
-            background: #1b2951;
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 0.5rem;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .nav-button:hover {
-            background: #28a745;
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .content {
-                padding: 1rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .table {
-                font-size: 0.9rem;
-            }
-
-            .table th, .table td {
-                padding: 0.5rem;
-            }
-
-            .service-flow {
-                grid-template-columns: 1fr;
-            }
-
-            .flow-step::after {
-                content: '⬇️';
-                top: -15px;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <header class="header">
-        <h1>🏛️ HomsGov</h1>
-        <div class="subtitle">الجزء الثالث: الحلول والتطبيقات</div>
-        <div class="description">
-            من الرؤية إلى التطبيق - حلول عملية قابلة للتنفيذ لمستقبل رقمي ذكي
-        </div>
-    </header>
-
-    <nav class="nav">
-        <div class="nav-container">
-            <ul>
-                <li><a href="#overview" onclick="showChapter('overview')" id="nav-overview">📋 نظرة عامة</a></li>
-                <li><a href="#chapter9" onclick="showChapter('chapter9')" id="nav-chapter9">🏢 منصة الخدمات الموحدة</a></li>
-                <li><a href="#chapter10" onclick="showChapter('chapter10')" id="nav-chapter10">📊 إدارة المشاريع والموازنات</a></li>
-                <li><a href="#chapter11" onclick="showChapter('chapter11')" id="nav-chapter11">🗺️ نظم المعلومات الجغرافية</a></li>
-                <li><a href="#chapter12" onclick="showChapter('chapter12')" id="nav-chapter12">🤖 الذكاء الاصطناعي</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <main class="content">
-        <!-- نظرة عامة -->
-        <section id="overview" class="chapter active">
-            <h2>📋 نظرة عامة - الجزء الثالث</h2>
-
-            <div class="highlight">
-                <h3>🎯 من الرؤية إلى التطبيق</h3>
-                <p>الجزء الثالث يترجم الرؤية الاستراتيجية والإطار المؤسسي إلى <strong>حلول عملية قابلة للتطبيق</strong>. نقدم هنا أربع منصات تقنية متكاملة تشكل العمود الفقري للحوكمة الرقمية في محافظة حمص.</p>
-            </div>
-
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-number">4</span>
-                    <div class="stat-label">منصات تقنية متكاملة</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">95%</span>
-                    <div class="stat-label">من العمليات الحكومية مرقمنة</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">24/7</span>
-                    <div class="stat-label">إتاحة الخدمات على مدار الساعة</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">85%</span>
-                    <div class="stat-label">تقليل في زمن إنجاز المعاملات</div>
-                </div>
-            </div>
-
-            <h3>🏗️ الركائز الأساسية الأربع</h3>
-            <div class="stats-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">🏢</span>
-                    <h4>منصة الخدمات المواطنية الموحدة</h4>
-                    <p>نافذة واحدة لجميع الخدمات المحلية، مصممة بمبادئ البساطة والشمولية والأمان</p>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">📊</span>
-                    <h4>نظام إدارة المشاريع والموازنات</h4>
-                    <p>إدارة شاملة لدورة حياة المشروع من الفكرة إلى التقييم، مع شفافية مالية كاملة</p>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">🗺️</span>
-                    <h4>نظم المعلومات الجغرافية والتخطيط</h4>
-                    <p>أدوات تحليل مكاني متقدمة لدعم التخطيط الذكي وإدارة الموارد والاستجابة للطوارئ</p>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">🤖</span>
-                    <h4>الذكاء الاصطناعي في اتخاذ القرارات</h4>
-                    <p>محرك ذكي لاتخاذ القرارات وأتمتة العمليات مع ضمان العدالة والشفافية</p>
-                </div>
-            </div>
-
-            <h3>🔗 التكامل والتناسق</h3>
-            <div class="highlight">
-                <p>هذه الحلول مصممة لتعمل كمنظومة متكاملة، حيث تتبادل البيانات والمعلومات لتقديم تجربة سلسة وموحدة:</p>
-                <ul>
-                    <li><strong>كفاءة أعلى</strong> في استخدام الموارد والوقت</li>
-                    <li><strong>دقة أكبر</strong> في القرارات المبنية على بيانات شاملة</li>
-                    <li><strong>خدمة أفضل</strong> للمواطنين بلا تكرار أو تضارب</li>
-                    <li><strong>شفافية كاملة</strong> في جميع العمليات والقرارات</li>
-                </ul>
-            </div>
-
-            <h3>📅 خطة التطبيق المرحلية</h3>
-            <div class="service-flow">
-                <div class="flow-step">
-                    <h5>المرحلة الأولى</h5>
-                    <p>الأسس والبنية التحتية</p>
-                    <small>6 أشهر</small>
-                </div>
-                <div class="flow-step">
-                    <h5>المرحلة الثانية</h5>
-                    <p>منصة الخدمات الأساسية</p>
-                    <small>6 أشهر</small>
-                </div>
-                <div class="flow-step">
-                    <h5>المرحلة الثالثة</h5>
-                    <p>التوسع والتكامل</p>
-                    <small>6 أشهر</small>
-                </div>
-                <div class="flow-step">
-                    <h5>المرحلة الرابعة</h5>
-                    <p>الذكاء الاصطناعي والتميز</p>
-                    <small>12 شهر</small>
-                </div>
-            </div>
-
-            <div class="navigation-container">
-                <h3>🧭 الانتقال إلى أجزاء أخرى</h3>
-                <p>لفهم شامل لمشروع HomsGov، يُنصح بقراءة جميع الأجزاء</p>
-                <a href="indexOld.html" class="nav-button">🌟 الجزء الأول: الرؤية الاستراتيجية</a>
-                <a href="#" class="nav-button" onclick="alert('الجزء الثاني قيد التطوير')">🏗️ الجزء الثاني: الإطار المؤسسي</a>
-                <a href="#" class="nav-button" onclick="alert('الجزء الرابع قيد التطوير')">🚀 الجزء الرابع: خطة التنفيذ</a>
-            </div>
-        </section>
-
-        <!-- الفصل التاسع -->
-        <section id="chapter9" class="chapter">
-            <h2>🏢 الفصل التاسع: منصة الخدمات المواطنية الموحدة</h2>
-
-            <h3>🎯 المفهوم والأهداف</h3>
-            <div class="highlight">
-                <h4>"نافذة واحدة لكل خدماتك"</h4>
-                <p>منصة HomsGov تهدف إلى جمع جميع الخدمات الحكومية المحلية في مكان واحد، يمكن الوصول إليه من أي مكان وفي أي وقت، بطريقة بسيطة وآمنة وفعالة.</p>
-            </div>
-
-            <h4>🏗️ المبادئ التأسيسية</h4>
-            <div class="stats-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">✨</span>
-                    <h5>البساطة والوضوح</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>واجهة مستخدم بديهية وسهلة الاستخدام</li>
-                        <li>لغة واضحة وبسيطة في جميع التعليمات</li>
-                        <li>إرشادات خطوة بخطوة لكل خدمة</li>
-                        <li>دعم كامل للغة العربية مع إمكانية التبديل للإنجليزية</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">🔗</span>
-                    <h5>الشمولية والتكامل</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>تغطية جميع الخدمات المحلية الأساسية</li>
-                        <li>تكامل مع الأنظمة الحكومية الأخرى</li>
-                        <li>ربط مع البنوك وشركات الدفع الإلكتروني</li>
-                        <li>تنسيق مع الخدمات الاتحادية والإقليمية</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">🔒</span>
-                    <h5>الأمان والخصوصية</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>حماية عالية للبيانات الشخصية</li>
-                        <li>تشفير متقدم لجميع المعاملات</li>
-                        <li>تحديد دقيق للصلاحيات والوصول</li>
-                        <li>مراجعة أمنية دورية ومستمرة</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>📋 الخدمات المشمولة في المنصة</h3>
-
-            <h4>👨‍👩‍👧‍👦 الخدمات الأساسية للمواطنين</h4>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h5>🆔 خدمات الهوية والأحوال المدنية</h5>
-                    <ul style="text-align: right; font-size: 0.9rem;">
-                        <li>طلب نسخ من الأوراق الثبوتية</li>
-                        <li>تحديث البيانات الشخصية</li>
-                        <li>تسجيل المواليد والوفيات</li>
-                        <li>خدمات الزواج والطلاق المدنية</li>
-                        <li>شهادات الإقامة والسكن</li>
-                    </ul>
-                </div>
-                
-                <div class="stat-card">
-                    <h5>💰 الخدمات المالية والضريبية</h5>
-                    <ul style="text-align: right; font-size: 0.9rem;">
-                        <li>دفع الضرائب والرسوم المحلية</li>
-                        <li>طلب إعفاءات أو تأجيل الدفع</li>
-                        <li>الاستعلام عن المستحقات</li>
-                        <li>تقديم الإقرارات الضريبية</li>
-                        <li>خدمات التقسيط والدفع المرن</li>
-                    </ul>
-                </div>
-                
-                <div class="stat-card">
-                    <h5>📜 خدمات التراخيص والموافقات</h5>
-                    <ul style="text-align: right; font-size: 0.9rem;">
-                        <li>تراخيص البناء السكني والتجاري</li>
-                        <li>تراخيص المهن والأعمال الحرة</li>
-                        <li>تراخيص المركبات والقيادة</li>
-                        <li>موافقات استخدام الأماكن العامة</li>
-                        <li>تراخيص الفعاليات والأنشطة</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h4>🏥 الخدمات المتخصصة</h4>
-            <table class="table">
-                <thead>
-                <tr>
-                    <td>الحرائق</td>
-                    <td>درجة الحرارة، الرطوبة، الرياح</td>
-                    <td>إرسال فرق الإطفاء المتخصصة</td>
-                    <td>الإطفاء، الزراعة</td>
-                </tr>
-                <tr>
-                    <td>الزلازل</td>
-                    <td>نشاط زلزالي، حالة المباني</td>
-                    <td>تقييم الأضرار والإسعاف</td>
-                    <td>الإسعاف، الهندسة</td>
-                </tr>
-                <tr>
-                    <td>الأوبئة</td>
-                    <td>معدلات الإصابة، انتشار المرض</td>
-                    <td>تطبيق البروتوكولات الصحية</td>
-                    <td>الصحة، التعليم</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h4>🎯 إدارة الأزمات الفورية</h4>
-            <div class="stats-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">👁️</span>
-                    <h5>مراقبة الحالة الآنية</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>متابعة الأحداث والحوادث بالزمن الحقيقي</li>
-                        <li>تتبع حركة فرق الطوارئ والإسعاف</li>
-                        <li>مراقبة حالة الطرق والمرافق الحيوية</li>
-                        <li>تنسيق الاستجابة بين الجهات المختلفة</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">🔍</span>
-                    <h5>تقييم الأضرار</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>تقييم سريع للأضرار باستخدام الصور الجوية</li>
-                        <li>خرائط توزيع الأضرار والمناطق المتضررة</li>
-                        <li>تحديد أولويات الإصلاح والتأهيل</li>
-                        <li>تخطيط عمليات إعادة الإعمار</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- الفصل الثاني عشر -->
-        <section id="chapter12" class="chapter">
-            <h2>🤖 الفصل الثاني عشر: الذكاء الاصطناعي في اتخاذ القرارات</h2>
-
-            <h3>🧠 محرك اتخاذ القرار الذكي</h3>
-
-            <h4>🎯 نظام ترتيب الأولويات</h4>
-            <div class="highlight">
-                <h5>📊 المعايير الأساسية للتقييم:</h5>
-                <ul>
-                    <li><strong>الإلحاح:</strong> مدى أهمية المشروع من ناحية الوقت</li>
-                    <li><strong>التأثير:</strong> عدد المستفيدين والأثر المتوقع</li>
-                    <li><strong>الجدوى:</strong> قابلية التنفيذ والموارد المطلوبة</li>
-                    <li><strong>التكلفة:</strong> الكفاءة الاقتصادية والعائد المتوقع</li>
-                    <li><strong>الدعم المجتمعي:</strong> مستوى تأييد المجتمع للمشروع</li>
-                </ul>
-            </div>
-
-            <div class="architecture-diagram">
-                <h5>⚙️ خوارزمية التقييم المتقدمة</h5>
-                <div class="service-flow">
-                    <div class="flow-step">
-                        <h5>📈 تحليل البيانات التاريخية</h5>
-                        <p>دراسة المشاريع المماثلة السابقة ونتائجها</p>
-                    </div>
-                    <div class="flow-step">
-                        <h5>🤖 تطبيق التعلم الآلي</h5>
-                        <p>استخدام نماذج ذكية لتوقع نجاح المشاريع</p>
-                    </div>
-                    <div class="flow-step">
-                        <h5>🔄 التحديث المستمر</h5>
-                        <p>تحسين النموذج بناءً على النتائج الفعلية</p>
-                    </div>
-                    <div class="flow-step">
-                        <h5>📋 التوصيات النهائية</h5>
-                        <p>تقديم قائمة مرتبة بالأولويات مع المبررات</p>
-                    </div>
-                </div>
-            </div>
-
-            <h4>⚖️ نظام دعم القرار متعدد المعايير</h4>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>العنصر</th>
-                    <th>الوزن النسبي</th>
-                    <th>طريقة القياس</th>
-                    <th>المصدر</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>تحليل السيناريوهات</td>
-                    <td>25%</td>
-                    <td>نمذجة رياضية</td>
-                    <td>بيانات تاريخية</td>
-                </tr>
-                <tr>
-                    <td>التوازن بين المصالح</td>
-                    <td>20%</td>
-                    <td>تحليل أصحاب المصلحة</td>
-                    <td>استطلاعات الرأي</td>
-                </tr>
-                <tr>
-                    <td>الجدوى الاقتصادية</td>
-                    <td>25%</td>
-                    <td>تحليل التكلفة والعائد</td>
-                    <td>دراسات مالية</td>
-                </tr>
-                <tr>
-                    <td>الأثر الاجتماعي</td>
-                    <td>20%</td>
-                    <td>مؤشرات جودة الحياة</td>
-                    <td>مسوحات ميدانية</td>
-                </tr>
-                <tr>
-                    <td>الاستدامة البيئية</td>
-                    <td>10%</td>
-                    <td>تقييم الأثر البيئي</td>
-                    <td>دراسات بيئية</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h3>📊 تحليل البيانات والتنبؤات</h3>
-
-            <h4>🔮 أنظمة التنبؤ المتقدمة</h4>
-            <div class="stats-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">📈</span>
-                    <h5>توقع الطلب على الخدمات</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>تحليل الأنماط التاريخية لاستخدام الخدمات</li>
-                        <li>تحديد العوامل المؤثرة على الطلب</li>
-                        <li>توقع الذروات والأوقات الهادئة</li>
-                        <li>تخطيط الموارد بناءً على التوقعات</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">🏘️</span>
-                    <h5>التنبؤ بالنمو السكاني والعمراني</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>تحليل اتجاهات النمو السكاني والهجرة</li>
-                        <li>توقع التوسع العمراني واحتياجات البنية التحتية</li>
-                        <li>تخطيط الخدمات للنمو المستقبلي</li>
-                        <li>تحديد المناطق التي تحتاج لاستثمار أولوي</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h4>👥 تحليل السلوك والأنماط</h4>
-            <div class="highlight">
-                <h5>🧐 فهم سلوك المواطنين:</h5>
-                <ul>
-                    <li>تحليل أنماط استخدام الخدمات الرقمية</li>
-                    <li>فهم التفضيلات والاحتياجات المختلفة</li>
-                    <li>تحديد العوائق التي تمنع استخدام بعض الخدمات</li>
-                    <li>تطوير حلول مخصصة لفئات مختلفة من المجتمع</li>
-                </ul>
-
-                <h5>📞 تحليل الشكاوى والمشاكل:</h5>
-                <ul>
-                    <li>تصنيف الشكاوى تلقائياً حسب النوع والأولوية</li>
-                    <li>تحديد الأنماط المكانية والزمنية للمشاكل</li>
-                    <li>اكتشاف المشاكل المتكررة والأسباب الجذرية</li>
-                    <li>تطوير حلول وقائية للمشاكل المتوقعة</li>
-                </ul>
-            </div>
-
-            <h3>⚙️ أتمتة العمليات والخدمات</h3>
-
-            <h4>🤖 الأتمتة الذكية للعمليات الروتينية</h4>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>نوع العملية</th>
-                    <th>مستوى الأتمتة</th>
-                    <th>الوقت المتوفر</th>
-                    <th>الدقة المحققة</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>معالجة الطلبات البسيطة</td>
-                    <td>100% آلي</td>
-                    <td>من ساعات إلى دقائق</td>
-                    <td>99.5%</td>
-                </tr>
-                <tr>
-                    <td>تصنيف وتوجيه الطلبات</td>
-                    <td>95% آلي</td>
-                    <td>من يوم إلى فوري</td>
-                    <td>97%</td>
-                </tr>
-                <tr>
-                    <td>التحقق من الوثائق</td>
-                    <td>90% آلي</td>
-                    <td>من ساعات إلى دقائق</td>
-                    <td>98%</td>
-                </tr>
-                <tr>
-                    <td>إصدار الموافقات</td>
-                    <td>80% آلي</td>
-                    <td>من أيام إلى ساعات</td>
-                    <td>99%</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h4>👤 الخدمات الذكية للمواطنين</h4>
-            <div class="stats-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">🤖</span>
-                    <h5>المساعد الافتراضي الذكي</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>الإجابة على الاستفسارات الشائعة</li>
-                        <li>مساعدة المواطنين في ملء النماذج</li>
-                        <li>تقديم معلومات مخصصة حسب احتياجات كل مواطن</li>
-                        <li>توفير الدعم بلغة طبيعية وبسيطة</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">💡</span>
-                    <h5>التوصيات الشخصية</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>اقتراح الخدمات التي قد يحتاجها المواطن</li>
-                        <li>تذكير المواطنين بالمواعيد والمهل المهمة</li>
-                        <li>تنبيه للخدمات الجديدة المتاحة</li>
-                        <li>تخصيص تجربة المستخدم حسب التفضيلات</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>🔒 أمان وأخلاقيات الذكاء الاصطناعي</h3>
-
-            <h4>⚖️ ضمان العدالة والشفافية</h4>
-            <div class="highlight">
-                <h5>🚫 منع التحيز في القرارات:</h5>
-                <ul>
-                    <li>مراجعة دورية لخوارزميات اتخاذ القرار</li>
-                    <li>فحص النتائج للتأكد من العدالة بين الفئات المختلفة</li>
-                    <li>تعديل النماذج عند اكتشاف أي تحيز</li>
-                    <li>ضمان المساواة في الوصول للخدمات</li>
-                </ul>
-
-                <h5>🔍 الشفافية في العمليات:</h5>
-                <ul>
-                    <li>توضيح كيفية عمل الأنظمة الذكية للمواطنين</li>
-                    <li>إتاحة تفسيرات واضحة للقرارات المتخذة آلياً</li>
-                    <li>حق المواطنين في الاعتراض على القرارات الآلية</li>
-                    <li>مراجعة بشرية للقرارات المهمة</li>
-                </ul>
-            </div>
-
-            <h4>🛡️ حماية الخصوصية والبيانات</h4>
-            <div class="stats-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">🔒</span>
-                    <h5>الحد الأدنى من جمع البيانات</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>جمع البيانات الضرورية فقط لتقديم الخدمة</li>
-                        <li>حذف البيانات القديمة وغير المطلوبة</li>
-                        <li>تشفير البيانات الحساسة</li>
-                        <li>ضمان عدم مشاركة البيانات مع جهات غير مخولة</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">✅</span>
-                    <h5>موافقة المستخدمين</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>طلب موافقة صريحة لاستخدام البيانات</li>
-                        <li>توضيح الغرض من جمع كل نوع من البيانات</li>
-                        <li>إمكانية سحب الموافقة في أي وقت</li>
-                        <li>تقديم خيارات للتحكم في مستوى الخصوصية</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="highlight">
-                <h4>🎯 خلاصة الجزء الثالث: من الرؤية إلى التطبيق</h4>
-                <p>الجزء الثالث من دليل HomsGov يترجم الرؤية الاستراتيجية والإطار المؤسسي إلى حلول عملية قابلة للتطبيق. هذه الحلول تتمحور حول أربع ركائز تقنية أساسية:</p>
-                
-                <div class="stats-grid" style="margin-top: 2rem;">
-                    <div class="stat-card">
-                        <span class="stat-number">1</span>
-                        <div class="stat-label">منصة الخدمات الموحدة: نافذة واحدة لكل الخدمات</div>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">2</span>
-                        <div class="stat-label">نظام إدارة المشاريع: شفافية مالية كاملة</div>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">3</span>
-                        <div class="stat-label">نظم المعلومات الجغرافية: تخطيط ذكي</div>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">4</span>
-                        <div class="stat-label">الذكاء الاصطناعي: قرارات عادلة وذكية</div>
-                    </div>
-                </div>
-
-                <p style="margin-top: 2rem; font-weight: 600; text-align: center; color: #1b2951;">
-                    <strong>البداية الآن: الانتقال من النظرية إلى التطبيق يتطلب خطة تنفيذ واضحة وإدارة تغيير فعالة</strong>
-                </p>
-            </div>
-
-            <div class="navigation-container">
-                <h3>🗺️ خريطة الدليل الكامل</h3>
-                <p>للحصول على فهم شامل لمشروع HomsGov، استكشف جميع أجزاء الدليل</p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0;">
-                    <a href="indexOld.html" class="nav-button">📖 الجزء الأول: الرؤية الاستراتيجية</a>
-                    <a href="#" class="nav-button" onclick="alert('الجزء الثاني: الإطار المؤسسي - قيد التطوير')">🏛️ الجزء الثاني: الإطار المؤسسي</a>
-                    <span class="nav-button" style="background: #28a745; cursor: default;">✅ الجزء الثالث: الحلول والتطبيقات</span>
-                    <a href="#" class="nav-button" onclick="alert('الجزء الرابع: خطة التنفيذ - قيد التطوير')">🚀 الجزء الرابع: خطة التنفيذ</a>
-                </div>
-
-                <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 1rem;">
-                    💡 <strong>نصيحة:</strong> احفظ هذه الصفحة في المفضلة للعودة إليها لاحقاً، وشاركها مع زملائك المهتمين بالحوكمة الرقمية.
-                </p>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div>
-            <h3>📧 مشروع HomsGov - الجزء الثالث</h3>
-            <p>الحلول العملية والتطبيقات التقنية لمستقبل رقمي ذكي في محافظة حمص</p>
-            <p><strong>فريق التطوير:</strong> المهندس إحسان الأتاسي</p>
-            
-            <div class="stats-grid" style="margin-top: 2rem;">
-                <div class="stat-card">
-                    <span class="stat-number">🏗️</span>
-                    <div class="stat-label">حلول تقنية متكاملة ومترابطة</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">🎯</span>
-                    <div class="stat-label">تركيز على التطبيق العملي</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">🤖</span>
-                    <div class="stat-label">تقنيات ذكية لخدمة المواطن</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">🌟</span>
-                    <div class="stat-label">معايير دولية وجودة عالية</div>
-                </div>
-            </div>
-            
-            <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
-                © 2024 HomsGov Project. جميع الحقوق محفوظة. الجزء الثالث: الحلول والتطبيقات.
-            </p>
-        </div>
-    </footer>
-</div>
-
-<button class="back-to-top" onclick="scrollToTop()">⬆️</button>
-
-<script>
-    // متغيرات عامة
-    let currentChapter = 'overview';
-    
-    // إظهار الفصول
-    function showChapter(chapterId) {
-        // إخفاء جميع الفصول
-        const chapters = document.querySelectorAll('.chapter');
-        chapters.forEach(chapter => {
-            chapter.classList.remove('active');
-        });
-
-        // إزالة الفئة النشطة من جميع الروابط
-        const navLinks = document.querySelectorAll('.nav a');
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-        });
-
-        // إظهار الفصل المحدد
-        const targetChapter = document.getElementById(chapterId);
-        if (targetChapter) {
-            targetChapter.classList.add('active');
-            
-            // إضافة الفئة النشطة للرابط الحالي
-            const currentNavLink = document.getElementById(`nav-${chapterId}`);
-            if (currentNavLink) {
-                currentNavLink.classList.add('active');
-            }
-            
-            currentChapter = chapterId;
-        }
-
-        // تحديث الرابط في المتصفح
-        window.history.pushState({}, '', `#${chapterId}`);
-
-        // الانتقال لأعلى المحتوى
-        document.querySelector('.content').scrollIntoView({ behavior: 'smooth' });
-        
-        // تحديث أشرطة التقدم
-        updateProgressBars();
-        
-        // إضافة تأثير الظهور
-        targetChapter.style.opacity = '0';
-        setTimeout(() => {
-            targetChapter.style.opacity = '1';
-        }, 100);
-    }
-
-    // العودة لأعلى الصفحة
-    function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // إظهار/إخفاء زر العودة لأعلى
-    function handleScroll() {
-        const backToTop = document.querySelector('.back-to-top');
-        if (window.pageYOffset > 300) {
-            backToTop.classList.add('visible');
-        } else {
-            backToTop.classList.remove('visible');
-        }
-        
-        // تحديث شريط التنقل الثابت
-        const nav = document.querySelector('.nav');
-        if (window.pageYOffset > 100) {
-            nav.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
-        } else {
-            nav.style.boxShadow = 'none';
-        }
-    }
-
-    // تحديث أشرطة التقدم
-    function updateProgressBars() {
-        setTimeout(() => {
-            const progressBars = document.querySelectorAll('.progress-fill');
-            progressBars.forEach(bar => {
-                const width = bar.style.width;
-                bar.style.width = '0';
-                setTimeout(() => {
-                    bar.style.width = width;
-                }, 200);
-            });
-        }, 300);
-    }
-
-    // إضافة تأثيرات تفاعلية للجداول
-    function initTableEffects() {
-        const tables = document.querySelectorAll('.table');
-        tables.forEach(table => {
-            const rows = table.querySelectorAll('tbody tr');
-            rows.forEach((row, index) => {
-                row.addEventListener('mouseenter', function() {
-                    this.style.backgroundColor = '#e8f4f8';
-                    this.style.transform = 'scale(1.01)';
-                    this.style.transition = 'all 0.2s ease';
-                });
-                
-                row.addEventListener('mouseleave', function() {
-                    this.style.backgroundColor = index % 2 === 0 ? 'white' : '#f8f9fa';
-                    this.style.transform = 'scale(1)';
-                });
-            });
-        });
-    }
-
-    // إضافة تأثيرات للبطاقات
-    function initCardEffects() {
-        const cards = document.querySelectorAll('.stat-card, .feature-card');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.02)';
-                this.style.boxShadow = '0 12px 25px rgba(40, 167, 69, 0.15)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-                this.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
-            });
-        });
-    }
-
-    // إضافة لوحة مفاتيح للتنقل
-    function initKeyboardNavigation() {
-        document.addEventListener('keydown', function(e) {
-            const chapters = ['overview', 'chapter9', 'chapter10', 'chapter11', 'chapter12'];
-            const currentIndex = chapters.indexOf(currentChapter);
-            
-            switch(e.key) {
-                case 'ArrowRight':
-                case 'ArrowDown':
-                    if (currentIndex < chapters.length - 1) {
-                        showChapter(chapters[currentIndex + 1]);
-                    }
-                    break;
-                case 'ArrowLeft':
-                case 'ArrowUp':
-                    if (currentIndex > 0) {
-                        showChapter(chapters[currentIndex - 1]);
-                    }
-                    break;
-                case 'Home':
-                    showChapter('overview');
-                    break;
-                case 'End':
-                    showChapter('chapter12');
-                    break;
-                case 'Escape':
-                    scrollToTop();
-                    break;
-            }
-        });
-    }
-
-    // تحميل الفصل بناءً على الرابط
-    function initializeFromURL() {
-        const hash = window.location.hash.substring(1);
-        if (hash && document.getElementById(hash)) {
-            showChapter(hash);
-        } else {
-            updateProgressBars();
-        }
-    }
-
-    // إضافة معالج الأحداث للتمرير
-    window.addEventListener('scroll', handleScroll);
-
-    // التهيئة عند تحميل الصفحة
-    window.addEventListener('load', function() {
-        initializeFromURL();
-        initTableEffects();
-        initCardEffects();
-        initKeyboardNavigation();
-        
-        // إضافة تأثير ظهور تدريجي للمحتوى
-        document.body.style.opacity = '0';
-        setTimeout(() => {
-            document.body.style.transition = 'opacity 0.5s ease';
-            document.body.style.opacity = '1';
-            <th>نوع الخدمة</th>
-                    <th>الخدمات المشمولة</th>
-                    <th>الوقت المستهدف</th>
-                    <th>القناة</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>الخدمات الصحية</td>
-                    <td>حجز المواعيد، الخدمات المنزلية، متابعة الملف الطبي</td>
-                    <td>فوري</td>
-                    <td>تطبيق + موقع</td>
-                </tr>
-                <tr>
-                    <td>الخدمات التعليمية</td>
-                    <td>تسجيل الطلاب، متابعة الأداء، طلب الشهادات</td>
-                    <td>1-3 أيام</td>
-                    <td>منصة ويب</td>
-                </tr>
-                <tr>
-                    <td>خدمات البيئة والمرافق</td>
-                    <td>طلبات الصيانة، الإبلاغ عن المشاكل، إدارة النفايات</td>
-                    <td>فوري للطلب</td>
-                    <td>تطبيق موبايل</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h3>📱 تجربة المستخدم والواجهات</h3>
-
-            <h4>📐 التصميم المتجاوب والمتاح</h4>
-            <div class="highlight">
-                <h5>💻 التوافق مع جميع الأجهزة:</h5>
-                <ul>
-                    <li>أجهزة الكمبيوتر المكتبية والمحمولة</li>
-                    <li>الهواتف الذكية والأجهزة اللوحية</li>
-                    <li>أجهزة التلفزيون الذكية</li>
-                    <li>أكشاك الخدمة في الأماكن العامة</li>
-                </ul>
-            </div>
-
-            <h4>♿ إمكانية الوصول للجميع</h4>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-number">👁️</span>
-                    <div class="stat-label">دعم كامل لذوي الاحتياجات الخاصة</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">🔊</span>
-                    <div class="stat-label">قارئ شاشة للمكفوفين وضعاف البصر</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">🔍</span>
-                    <div class="stat-label">خيارات تكبير الخط وتباين الألوان</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">🎤</span>
-                    <div class="stat-label">إدخال صوتي للذين يعانون من صعوبات الكتابة</div>
-                </div>
-            </div>
-
-            <h4>🚶‍♂️ رحلة المستخدم المبسطة - مثال: طلب رخصة بناء</h4>
-            <div class="service-flow">
-                <div class="flow-step">
-                    <h5>الخطوة الأولى</h5>
-                    <p><strong>تسجيل الدخول</strong></p>
-                    <small>دخول بالهوية الوطنية ورقم الهاتف، تأكيد برسالة نصية أو البصمة</small>
-                </div>
-                <div class="flow-step">
-                    <h5>الخطوة الثانية</h5>
-                    <p><strong>اختيار الخدمة</strong></p>
-                    <small>البحث عن "رخصة بناء" أو التصفح عبر قسم "التراخيص والموافقات"</small>
-                </div>
-                <div class="flow-step">
-                    <h5>الخطوة الثالثة</h5>
-                    <p><strong>تعبئة البيانات</strong></p>
-                    <small>نموذج ذكي يُملأ تلقائياً، رفع الوثائق المطلوبة</small>
-                </div>
-                <div class="flow-step">
-                    <h5>الخطوة الرابعة</h5>
-                    <p><strong>المراجعة والدفع</strong></p>
-                    <small>عرض ملخص الطلب والرسوم، اختيار طريقة الدفع</small>
-                </div>
-                <div class="flow-step">
-                    <h5>الخطوة الخامسة</h5>
-                    <p><strong>المتابعة</strong></p>
-                    <small>استلام رقم الطلب، متابعة الحالة، استلام الرخصة رقمياً</small>
-                </div>
-            </div>
-
-            <h3>🎧 الدعم الفني وخدمة العملاء</h3>
-
-            <h4>📞 مركز الاتصال المتطور</h4>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>قناة الدعم</th>
-                    <th>أوقات العمل</th>
-                    <th>نوع الاستفسارات</th>
-                    <th>زمن الاستجابة</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>خط ساخن مجاني</td>
-                    <td>24/7</td>
-                    <td>جميع الاستفسارات</td>
-                    <td>أقل من دقيقتين</td>
-                </tr>
-                <tr>
-                    <td>دردشة مباشرة</td>
-                    <td>8:00 - 20:00</td>
-                    <td>دعم تقني فوري</td>
-                    <td>أقل من 30 ثانية</td>
-                </tr>
-                <tr>
-                    <td>البريد الإلكتروني</td>
-                    <td>مستمر</td>
-                    <td>استفسارات معقدة</td>
-                    <td>خلال 4 ساعات</td>
-                </tr>
-                <tr>
-                    <td>مكاتب الدعم الفني</td>
-                    <td>8:00 - 16:00</td>
-                    <td>مساعدة شخصية</td>
-                    <td>بلا انتظار</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h4>🎓 التدريب والتأهيل المجتمعي</h4>
-            <div class="highlight">
-                <h5>📚 برامج التدريب للمواطنين:</h5>
-                <ul>
-                    <li>ورش عمل أسبوعية في المراكز المجتمعية</li>
-                    <li>فيديوهات تعليمية قصيرة ومبسطة</li>
-                    <li>أدلة مصورة خطوة بخطوة</li>
-                    <li>جلسات تدريب مخصصة لكبار السن</li>
-                </ul>
-
-                <h5>🤝 برنامج المساعدين المجتمعيين:</h5>
-                <ul>
-                    <li>تدريب متطوعين من كل حي على استخدام المنصة</li>
-                    <li>تجهيزهم لمساعدة الجيران والأقارب</li>
-                    <li>تقديم حوافز بسيطة للمساعدين الفعالين</li>
-                    <li>تنظيم فعاليات تنافسية لتشجيع الاستخدام</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- الفصل العاشر -->
-        <section id="chapter10" class="chapter">
-            <h2>📊 الفصل العاشر: نظام إدارة المشاريع والموازنات</h2>
-
-            <h3>🔄 دورة حياة المشروع الرقمية</h3>
-
-            <h4>💡 مرحلة اقتراح الفكرة</h4>
-            <div class="stats-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">🏛️</span>
-                    <h5>مصادر الأفكار المتنوعة</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>اقتراحات المواطنين عبر المنصة</li>
-                        <li>توصيات المجالس المحلية</li>
-                        <li>دراسات الحاجة والجدوى الفنية</li>
-                        <li>تحليل البيانات واكتشاف الفجوات</li>
-                        <li>التوجيهات من المستويات الإدارية العليا</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">📋</span>
-                    <h5>تقييم الفكرة الأولي</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>نموذج موحد لوصف الفكرة وفوائدها</li>
-                        <li>تحليل سريع للحاجة والجدوى</li>
-                        <li>تقدير أولي للتكلفة والوقت المطلوب</li>
-                        <li>تقييم مبدئي من اللجنة الفنية</li>
-                        <li>تصنيف الفكرة حسب الأولوية والإمكانية</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h4>📐 مرحلة التخطيط التفصيلي</h4>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>الجانب</th>
-                    <th>المؤشرات المطلوبة</th>
-                    <th>معايير التقييم</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>الجدوى الفنية</td>
-                    <td>التقنيات المطلوبة، الخبرات المتاحة</td>
-                    <td>قابلية التنفيذ بالموارد المحلية</td>
-                </tr>
-                <tr>
-                    <td>الجدوى الاقتصادية</td>
-                    <td>التكاليف، الفوائد، فترة الاسترداد</td>
-                    <td>العائد على الاستثمار</td>
-                </tr>
-                <tr>
-                    <td>الجدوى الاجتماعية</td>
-                    <td>عدد المستفيدين، التأثير على الحياة</td>
-                    <td>تحسين جودة الحياة</td>
-                </tr>
-                <tr>
-                    <td>الجدوى البيئية</td>
-                    <td>الأثر البيئي، الاستدامة</td>
-                    <td>عدم الإضرار بالبيئة</td>
-                </tr>
-                <tr>
-                    <td>الجدوى القانونية</td>
-                    <td>التوافق مع القوانين، التراخيص</td>
-                    <td>الامتثال الكامل للأنظمة</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h4>⚙️ مرحلة التنفيذ والمراقبة</h4>
-            <div class="highlight">
-                <h5>📅 إدارة التنفيذ اليومية:</h5>
-                <ul>
-                    <li>تقارير تقدم يومية من فرق المشروع</li>
-                    <li>مراقبة الالتزام بالجدول الزمني والموازنة</li>
-                    <li>متابعة جودة العمل ومطابقته للمواصفات</li>
-                    <li>حل المشاكل والعقبات فور ظهورها</li>
-                    <li>التواصل المستمر مع المستفيدين والمجتمع</li>
-                </ul>
-
-                <h5>🚨 نظام الإنذار المبكر:</h5>
-                <ul>
-                    <li>تحديد النقاط الحرجة في كل مشروع</li>
-                    <li>مراقبة مؤشرات الخطر والانحراف</li>
-                    <li>إنذارات تلقائية عند تجاوز الحدود المسموحة</li>
-                    <li>إجراءات تصحيحية سريعة ومدروسة</li>
-                    <li>تصعيد القضايا المعقدة للمستويات العليا</li>
-                </ul>
-            </div>
-
-            <h3>💰 الشفافية المالية الكاملة</h3>
-
-            <h4>📊 نشر معلومات الموازنة</h4>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h5>📈 الموازنة العامة للمحافظة</h5>
-                    <ul style="text-align: right; font-size: 0.9rem;">
-                        <li>إجمالي المخصصات لكل قطاع</li>
-                        <li>توزيع الموازنة على الوحدات الإدارية</li>
-                        <li>مصادر التمويل (محلي، مركزي، دولي)</li>
-                        <li>المقارنة مع الموازنات السابقة</li>
-                        <li>التوقعات والخطط للسنوات القادمة</li>
-                    </ul>
-                </div>
-                
-                <div class="stat-card">
-                    <h5>🏗️ موازنات المشاريع المفصلة</h5>
-                    <ul style="text-align: right; font-size: 0.9rem;">
-                        <li>التكلفة الإجمالية لكل مشروع</li>
-                        <li>توزيع التكاليف على البنود المختلفة</li>
-                        <li>الجدول الزمني للإنفاق</li>
-                        <li>مصادر التمويل لكل مشروع</li>
-                        <li>المقارنة بين المخطط والفعلي</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h4>⏱️ تتبع الإنفاق الفوري</h4>
-            <div class="architecture-diagram">
-                <h5>🎛️ لوحة قيادة الإنفاق (Real-time Dashboard)</h5>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <span class="stat-number">24/7</span>
-                        <div class="stat-label">عرض حالة الإنفاق بالزمن الحقيقي</div>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">📊</span>
-                        <div class="stat-label">مقارنة الإنفاق الفعلي بالمخطط</div>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">%</span>
-                        <div class="stat-label">نسب الإنجاز المالي والزمني</div>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">⚠️</span>
-                        <div class="stat-label">التحذيرات من التجاوزات المحتملة</div>
-                    </div>
-                </div>
-            </div>
-
-            <h3>📈 تحليل الأداء والعوائد</h3>
-
-            <h4>🎯 مؤشرات أداء المشاريع</h4>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>نوع المؤشر</th>
-                    <th>المؤشرات الفرعية</th>
-                    <th>الهدف المستهدف</th>
-                    <th>طريقة القياس</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>مؤشرات الكفاءة</td>
-                    <td>التزام بالجدول الزمني، الموازنة، الجودة</td>
-                    <td>95%+ التزام</td>
-                    <td>نظام مراقبة آلي</td>
-                </tr>
-                <tr>
-                    <td>مؤشرات الفعالية</td>
-                    <td>عدد المستفيدين، تحقيق الأهداف</td>
-                    <td>100% من الأهداف</td>
-                    <td>استطلاعات دورية</td>
-                </tr>
-                <tr>
-                    <td>مؤشرات الرضا</td>
-                    <td>رضا المواطنين والمستفيدين</td>
-                    <td>85%+ رضا</td>
-                    <td>تقييمات مستمرة</td>
-                </tr>
-                <tr>
-                    <td>مؤشرات التأثير</td>
-                    <td>الأثر على جودة الحياة، التنمية</td>
-                    <td>تحسن قابل للقياس</td>
-                    <td>دراسات الأثر</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h4>🌍 تقييم العوائد الاجتماعية والاقتصادية</h4>
-            <div class="stats-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">👥</span>
-                    <h5>العوائد الاجتماعية</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>تحسن في مستوى المعيشة</li>
-                        <li>زيادة الوصول للخدمات الأساسية</li>
-                        <li>تحسن في الصحة العامة والتعليم</li>
-                        <li>تعزيز التماسك الاجتماعي</li>
-                        <li>زيادة المشاركة المجتمعية</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">💼</span>
-                    <h5>العوائد الاقتصادية</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>خلق فرص عمل مباشرة وغير مباشرة</li>
-                        <li>زيادة النشاط التجاري في المنطقة</li>
-                        <li>تحسن في قيمة العقارات</li>
-                        <li>جذب استثمارات جديدة</li>
-                        <li>زيادة الإيرادات المحلية</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- الفصل الحادي عشر -->
-        <section id="chapter11" class="chapter">
-            <h2>🗺️ الفصل الحادي عشر: نظم المعلومات الجغرافية والتخطيط الذكي</h2>
-
-            <h3>🌐 الخرائط التفاعلية الشاملة</h3>
-
-            <h4>🗺️ منصة الخرائط المتكاملة</h4>
-            <div class="highlight">
-                <h5>📍 الطبقات الأساسية للمعلومات:</h5>
-                <ul>
-                    <li><strong>الحدود الإدارية:</strong> محافظة، مدن، بلدات، أحياء</li>
-                    <li><strong>البنية التحتية:</strong> طرق، جسور، شبكات المياه والكهرباء</li>
-                    <li><strong>المرافق العامة:</strong> مدارس، مستشفيات، مراكز خدمية</li>
-                    <li><strong>المناطق السكنية:</strong> كثافة السكان، أنواع المساكن</li>
-                    <li><strong>الأنشطة الاقتصادية:</strong> مناطق تجارية، صناعية، زراعية</li>
-                </ul>
-            </div>
-
-            <div class="stats-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">⚡</span>
-                    <h5>الطبقات التفاعلية</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li><strong>المشاريع الجارية:</strong> حالة التقدم، الجداول الزمنية</li>
-                        <li><strong>الخدمات المتاحة:</strong> مواقع تقديم الخدمات، أوقات العمل</li>
-                        <li><strong>الشكاوى والمشاكل:</strong> مواقع المشاكل المبلغ عنها</li>
-                        <li><strong>الأحداث والفعاليات:</strong> المناسبات والأنشطة المحلية</li>
-                        <li><strong>حالة المرور:</strong> الازدحام، الطرق المغلقة، البدائل</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">📊</span>
-                    <h5>أدوات التحليل المكاني</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>خرائط الكثافة السكانية بالألوان</li>
-                        <li>توزيع الفئات العمرية جغرافياً</li>
-                        <li>خريطة الأحياء حسب المستوى الاقتصادي</li>
-                        <li>تحليل النمو السكاني والتوقعات</li>
-                        <li>تحليل توزيع الخدمات والفجوات</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>🏙️ التخطيط العمراني الذكي</h3>
-
-            <h4>🧠 نظام دعم قرارات التخطيط</h4>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>نوع التحليل</th>
-                    <th>البيانات المستخدمة</th>
-                    <th>المخرجات</th>
-                    <th>التطبيق</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>تحليل استخدامات الأراضي</td>
-                    <td>صور جوية، مسوحات ميدانية</td>
-                    <td>خرائط الاستخدام الحالي والمستقبلي</td>
-                    <td>تحديد المناطق للتطوير</td>
-                </tr>
-                <tr>
-                    <td>نمذجة النمو العمراني</td>
-                    <td>البيانات السكانية، اتجاهات النمو</td>
-                    <td>توقعات التوسع العمراني</td>
-                    <td>تخطيط البنية التحتية</td>
-                </tr>
-                <tr>
-                    <td>تقييم المشاريع العمرانية</td>
-                    <td>دراسات الأثر، التقييمات الفنية</td>
-                    <td>تقارير الجدوى والتوصيات</td>
-                    <td>اتخاذ قرارات الاستثمار</td>
-                </tr>
-                <tr>
-                    <td>أدوات المشاركة المجتمعية</td>
-                    <td>آراء المواطنين، الاستطلاعات</td>
-                    <td>خرائط المشاركة والأولويات</td>
-                    <td>التخطيط التشاركي</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h4>🤝 أدوات المشاركة في التخطيط</h4>
-            <div class="service-flow">
-                <div class="flow-step">
-                    <h5>🗳️ استطلاعات الرأي الجغرافية</h5>
-                    <p>استطلاعات مرتبطة بمواقع جغرافية محددة مع إمكانية تحديد المشاكل على الخريطة</p>
-                </div>
-                <div class="flow-step">
-                    <h5>💬 ورش التخطيط التشاركي</h5>
-                    <p>جلسات تخطيط تفاعلية باستخدام الخرائط الرقمية مع المواطنين</p>
-                </div>
-                <div class="flow-step">
-                    <h5>💡 عصف ذهني جماعي</h5>
-                    <p>حل المشاكل المكانية بمشاركة جميع أصحاب المصلحة</p>
-                </div>
-                <div class="flow-step">
-                    <h5>📊 تصويت على المشاريع</h5>
-                    <p>تصويت عام على المشاريع والحلول المقترحة حسب الأولوية</p>
-                </div>
-            </div>
-
-            <h3>🏢 إدارة الأصول والموارد</h3>
-
-            <h4>📦 نظام إدارة الأصول العامة</h4>
-            <div class="architecture-diagram">
-                <h5>📋 مكونات نظام إدارة الأصول</h5>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <span class="stat-number">📊</span>
-                        <div class="stat-label">جرد شامل للأصول مع معلومات مفصلة</div>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">🔧</span>
-                        <div class="stat-label">تخطيط الصيانة الذكي والوقائي</div>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">💰</span>
-                        <div class="stat-label">متابعة تكاليف الصيانة والتشغيل</div>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">📈</span>
-                        <div class="stat-label">تحليل دورة حياة الأصول</div>
-                    </div>
-                </div>
-            </div>
-
-            <h4>🌊 إدارة الموارد الطبيعية</h4>
-            <div class="stats-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">💧</span>
-                    <h5>مراقبة الموارد المائية</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>خريطة شبكات المياه والصرف الصحي</li>
-                        <li>مراقبة مستويات المياه الجوفية</li>
-                        <li>تتبع جودة المياه في مواقع مختلفة</li>
-                        <li>تحليل أنماط الاستهلاك والفاقد</li>
-                    </ul>
-                </div>
-                
-                <div class="feature-card">
-                    <span class="feature-icon">🌳</span>
-                    <h5>إدارة الأراضي والغابات</h5>
-                    <ul style="text-align: right; margin-top: 1rem;">
-                        <li>خرائط استخدام الأراضي الزراعية والحرجية</li>
-                        <li>مراقبة التغيرات في الغطاء النباتي</li>
-                        <li>تتبع عمليات البناء والتطوير</li>
-                        <li>حماية المناطق الحساسة بيئياً</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>🚨 الاستجابة للطوارئ والأزمات</h3>
-
-            <h4>⚠️ نظام الإنذار المبكر</h4>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>نوع المخاطر</th>
-                    <th>مؤشرات الإنذار</th>
-                    <th>خطة الاستجابة</th>
-                    <th>الجهات المعنية</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>الفيضانات</td>
-                    <td>مستوى الأمطار، مناسيب الأنهار</td>
-                    <td>إخلاء المناطق المعرضة</td>
-                    <td>الدفاع المدني، البلديات</td>
-                </tr>
-                <tr>
-                
